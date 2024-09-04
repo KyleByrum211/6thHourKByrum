@@ -1,6 +1,6 @@
 #Kyle Byrum
 #6th Hour
-#Assignment: HW2
+#Assignment: HW3
 
 #Print Hello World!
 print("Hello World!")
