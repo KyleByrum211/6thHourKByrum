@@ -94,7 +94,7 @@ while True:
 
     #PICK A random number and test to see if it's a safe round where the player can search for money or go to the shop or ect...
     if random.random() > 0.9:
-        print("No one was selected, it is a safe round.")
+        print("\nNo one was selected, it is a safe round.")
         print(f"You have {Money} bottle-caps.")
         print("You can enter the shop, scavenge for money, steal items from players, or hide from the next round.")
         doThing = input("What would you like to do? (Shop/Scavenge/Steal/Hide): ")
