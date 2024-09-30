@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Updated Playground">
-      <change afterPath="$PROJECT_DIR$/HW5.py" afterDir="false" />
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW5 and changed a string within the playground">
+      <change afterPath="$PROJECT_DIR$/HW6.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +54,7 @@
     "Python.HW3.executor": "Run",
     "Python.HW4.executor": "Run",
     "Python.HW5.executor": "Run",
+    "Python.HW6.executor": "Debug",
     "Python.Hello world!.executor": "Run",
     "Python.Playground.executor": "Run",
     "Python.Scenario 1.executor": "Run",
@@ -168,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727380812870</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added HW5 and changed a string within the playground">
+      <option name="closed" value="true" />
+      <created>1727462448324</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727462448324</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -182,6 +190,7 @@
     <MESSAGE value="Added Scenario 1" />
     <MESSAGE value="Added Scenario 2" />
     <MESSAGE value="Updated Playground" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Playground" />
+    <MESSAGE value="Added HW5 and changed a string within the playground" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HW5 and changed a string within the playground" />
   </component>
 </project>
