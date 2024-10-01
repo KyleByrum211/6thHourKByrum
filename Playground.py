@@ -37,7 +37,7 @@ PlayerValues = {
         "Money": 2,
         "Generosity": 10
     },
-    "Mr. Mac": {
+    "Coach Mack": {
         "Friendliness": 95,
         "Money": 3,
         "Generosity": 25
@@ -64,7 +64,7 @@ PlayerValues = {
     },
 }
 
-PlayerNames = ["John", "Stanly", "Logan", "AJ", "Mr. Mac", "Kevin", "Flamingo Lord", "Purple Sus", "Sans"]
+PlayerNames = ["John", "Stanly", "Logan", "AJ", "Coach Mack", "Kevin", "Flamingo Lord", "Purple Sus", "Sans"]
 NumbList1 = [random.randint(1, 100), random.randint(1, 100), random.randint(1, 100), random.randint(1, 100)]
 NumbList2 = [random.randint(1, 100), random.randint(1, 100), random.randint(1, 100), random.randint(1, 100)]
 
@@ -76,8 +76,10 @@ NumbList2 = [random.randint(1, 100), random.randint(1, 100), random.randint(1, 1
 UserName = input("Please provide your name: ")
 print(f"Hello {UserName}! Welcome to my playground.")
 print("Your goal is to survive. There are various collectable items that can help you in your journey to victory.")
-PlayerNames.append(UserName)
+if UserName not in PlayerNames:
+    PlayerNames.append(UserName)
 maxPlayers = len(PlayerNames)
+input("Press enter to continue. ")
 
 def EliminateUser():
     PlayerNames.remove(UserName)
@@ -93,7 +95,7 @@ while True:
     #Pick a player and remove them from the list
 
     #PICK A random number and test to see if it's a safe round where the player can search for money or go to the shop or ect...
-    if random.random() > 0.9:
+    if random.random() > 0.85:
         print("\nNo one was selected, it is a safe round.")
         print(f"You have {Money} bottle-caps.")
         print("You can enter the shop, scavenge for money, steal items from players, or hide from the next round.")
@@ -138,13 +140,13 @@ while True:
                 if Steal in PlayerNames:
                     if random.randint(1, 3) == 1:
                         print(f"You got caught by {Steal}!")
-                        if Steal.title() == "Sans":
+                        if Steal == "Sans":
                             print(
                                 "Sans wasn't upset you tried to steal. He had no money anyway. He just gave it a laugh.")
                             PlayerValues["Sans"]["Friendliness"] += 5
                             if PlayerValues["Sans"]["Friendliness"] > 100:
                                 PlayerValues["Sans"]["Friendliness"] = 100
-                        elif Steal.title() == "Purple Sus":
+                        elif Steal == "Purple Sus":
                             print(
                                 "Purple didn't mind much. He mentioned he'd prefer if you didn't steal from him again though.")
                         else:
@@ -199,18 +201,33 @@ while True:
         elif doThing == "hide":
             print("You chose to hide. Hiding guarantees that you aren't eliminated from the next round, but it lowers your chance to survive the one after if you get caught. \nDo note, most of your opponents don't enjoy you cheating the game like that.")
             Hiding = True
+            time.sleep(0.5)
+            PlayerNames.remove(UserName)
+            playersThatFoundOut = [random.choice(PlayerNames), random.choice(PlayerNames), random.choice(PlayerNames)]
+            PlayerNames.append(UserName)
+            print(f"\n{playersThatFoundOut[0]}, {playersThatFoundOut[1]}, and {playersThatFoundOut[2]} found you hiding and got upset.")
+            PlayerValues[playersThatFoundOut[0]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[0]]["Friendliness"] * 0.25)
+            PlayerValues[playersThatFoundOut[1]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[1]]["Friendliness"] * 0.25)
+            PlayerValues[playersThatFoundOut[2]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[2]]["Friendliness"] * 0.25)
+            if PlayerValues[playersThatFoundOut[0]]["Friendliness"] < 0:
+                PlayerValues[playersThatFoundOut[0]]["Friendliness"] = 0
+            if PlayerValues[playersThatFoundOut[1]]["Friendliness"] < 0:
+                PlayerValues[playersThatFoundOut[1]]["Friendliness"] = 0
+            if PlayerValues[playersThatFoundOut[2]]["Friendliness"] < 0:
+                PlayerValues[playersThatFoundOut[2]]["Friendliness"] = 0
     else:
         if random.random() >= SelectedChance:
             picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
             if picked_player == UserName:
                 continue
             print("\nPicking player...")
-            time.sleep(1)
+            time.sleep(2)
             print(f"{picked_player} has been chosen.")
             PlayerNames.remove(picked_player)
-            Money += 1
-            print(f"{picked_player} dropped a bottle-cap you snatched before anyone else could.")
-            maxPlayers -= 1
+            if random.randint(1, 4) > 1:
+                Money += 1
+                moneyReceiveMessages = [f"{picked_player} dropped a bottle-cap you snatched before anyone else could.", "A skeleton just appeared out of nowhere and handed you a bottle-cap.", "A boat load of bottle-caps fell from the sky. Sadly, most of them fell into the nearby drain and you only managed to collect 1.", "The fans watching this donated a single bottle-cap to you specifically."]
+                print(random.choice(moneyReceiveMessages))
             if random.randint(1, 5) == 1:
                 chance = random.randint(1, 3)
                 newItem = None
@@ -248,8 +265,7 @@ while True:
                     if newItem == Item:
                         print("You already have that item.")
                     else:
-                        takeItem = input(
-                            f"You already have a {Item}. Would you like to replace it with a {newItem}? (type 'yes' to accept): ")
+                        takeItem = input(f"You already have a {Item}. Would you like to replace it with a {newItem}? (type 'yes' to accept): ")
                         if takeItem.lower() == "yes":
                             Item = newItem
                             newItem = None
@@ -269,14 +285,29 @@ while True:
                         Item = None
                         if amongUs == UserName:
                             print("Why would you remove yourself?")
+                            if Rounds == 1:
+                                print("You.. had an item on round 1? Why would you use it to lose?? \nYou survived 1 round.")
+                            elif 9 > Rounds > 4:
+                                print(f"You had a pretty good run there. Not sure why you ended it. \nYou survived {Rounds} rounds.")
+                            else:
+                                if maxPlayers == 2:
+                                    print("You were in the final two and chose to lose? Like on purpose??")
+                                else:
+                                    print(f"You survived {Rounds} rounds.")
                         else:
                             print(f"You successfully eliminated {amongUs}!")
                             print(f"Interestingly, {amongUs} knew you were up to something and let one of their friends hold their bottle-caps. You dont get any.")
                     else:
                         print("That is not a valid player.")
+            maxPlayers = len(PlayerNames)
             if maxPlayers == 1:
                 time.sleep(1.5)
                 print(f"\nCongratulations, you survived the playground! You managed to live all {Rounds} rounds!")
+                print(f"You collected {Money} bottle-caps.")
+                if Item is not None:
+                    print(f"You had a {Item} that you didn't use.")
+                else:
+                    print("You had no item.")
                 break
             else:
                 print(f"There are {maxPlayers} left.")
@@ -293,7 +324,7 @@ while True:
         else:
             if not Hiding:
                 print("\nPicking player...")
-                time.sleep(1)
+                time.sleep(2)
                 if Item == "Revive":
                     Item = None
                     print("You have been selected.")
