@@ -6,7 +6,6 @@
 import time
 import random
 import math
-from multiprocessing.managers import Value
 
 from RPG import money
 
@@ -97,72 +96,88 @@ SelectedChance = 1 / maxPlayers
 while True:
     #Pick a player and remove them from the list
 
-    #PICK A random number and test to see if it's a safe round where the player can search for money or go to the shop or ect...
+    #PICK A random number and test to see if it's a safe round where the player can search for Money or go to the shop or ect...
     if random.random() > 0.85:
         print("\nNo one was selected, it is a safe round.")
         while True:
             print(f"You have {Money} bottle-caps.")
-            print("You can enter the shop, scavenge for money, steal items from players, or hide from the next round.")
+            print("You can enter the shop, scavenge for Money, steal items from players, or hide from the next round.")
             doThing = input("What would you like to do? (Shop/Scavenge/Steal/Hide/Gamble): ")
             doThing = doThing.lower()
             if doThing == "gamble":
                 while True:
                     print("Lets go gambling!!!")
-                    doThing = input("Where would you like to gamble? (Wheel/Slot Machine/Coin Flip/Leave): ")
-                    doThing = doThing.lower()
-                    if doThing == "wheel":
+                    Gamble = input("Where would you like to gamble? (Wheel/Slot Machine/Coin Flip/Leave): ")
+                    Gamble = Gamble.lower()
+                    if Gamble == "wheel":
                         print("You chose to gamble at the wheel.")
                         try:
                             moneySpent = int(input("How many bottle-caps would you like to gamble away?: "))
                         except ValueError:
                             print("That is not a valid amount of bottle-caps.")
                             moneySpent = 0
-                        if moneySpent > 0 and moneySpent <= money:
-                            if money > 0:
+                        if 0 < moneySpent <= Money:
+                            if Money > 0:
                                 wheel = random.randint(1, 17)
                                 if wheel <= 5:
-                                    money -= 1
+                                    Money -= 1
                                     print("You lost a bottle-cap.")
                                 elif wheel <= 10:
-                                    money += 1
+                                    Money += 1
                                     print("You won a bottle-cap!")
                                 elif wheel <= 13:
-                                    money -= moneySpent
+                                    Money -= moneySpent
                                     print("You lost all of the bottle-caps you gambled.")
                                 elif wheel <= 16:
-                                    money += moneySpent
+                                    Money += moneySpent
                                     print("You just won the amount of bottle-caps you gambled!!")
                                 elif wheel <= 17:
-                                    money += moneySpent * 5
+                                    Money += moneySpent * 5
                                     print("Jackpot!!!!!!!!!!! You just won 5 times the amount you gambled!!")
                             else:
                                 print("You broke fool")
-                    elif doThing == "slot machine":
+                    elif Gamble == "slot machine":
                         print("You chose to gamble at the wheel.")
+                        slots = input("Would you like to spend 2 bottle-caps to use the machine? (Yes/No): ")
+                        if slots.lower() == "yes":
+                            if Money >= 2:
+                                slots = random.random()
+                                if slots >= 0.999:
+                                    Money += 100
+                                    print("You got the jackpot! That's a 0.1% chance! You'll never run out of bottle-caps again.")
+                                elif slots >= 0.98:
+                                    Money += 20
+                                    print("Nice you got lucky! 2% chance for a good sum of bottle-caps.")
+                                elif slots >= 0.78:
+                                    Money += 6
+                                    print("you got the 20%. That's some decent bottle-caps.")
+                                elif slots >= 0.38:
+                                    Money += 1
+                                    print("You got the 40% chance. You get a single bottlecap.")
+                                else:
+                                    Money -= 2
+                                    print("You lost the two bottle-caps you paid to use the machine.")
+                            else:
+                                print("You don't have enough bottle-caps to use the machine.")
+                    elif Gamble == "coin flip":
+                        print("You chose to gamble by coin flip. There is a 50% chance you double your money and a 50% chance you lose it.")
                         try:
                             moneySpent = int(input("How many bottle-caps would you like to gamble away?: "))
                         except ValueError:
                             print("That is not a valid amount of bottle-caps.")
                             moneySpent = 0
-                        slots = random.random()
-                        if slots >= 0.999:
-                            money += 99999999
-                            print("You got the jackpot!!!!!!!!!!!!!!!! Infinite cash ong!")
-                        elif slots >= 0.98:
-                            print("mone ")
-                    elif doThing == "coin flip":
-                        print("You chose to gamble at the wheel.")
-                        try:
-                            moneySpent = int(input("How many bottle-caps would you like to gamble away?: "))
-                        except ValueError:
-                            print("That is not a valid amount of bottle-caps.")
-                            moneySpent = 0
-
-                    elif doThing == "leave":
+                        if 0 < moneySpent <= Money:
+                            if random.random() <= 0.49:
+                                Money += moneySpent
+                                print("You won the coin flip! The bottle-caps you gambled is doubled!")
+                            else:
+                                Money -= moneySpent
+                                print("You lost the coin flip. You lost all the bottle-caps you gambled.")
+                    elif Gamble == "leave":
                         break
                     else:
                         print("That is not a valid option.")
-            elif doThing == "shop":
+            if doThing == "shop":
                 if "Flamingo Lord" in PlayerNames:
                     print("You walk into the shop ran by Flamingo Lord.")
                 else:
@@ -176,7 +191,7 @@ while True:
                         Item = "Disliking"
                         break
                     else:
-                        print("You don't have enough money to afford that.")
+                        print("You don't have enough Money to afford that.")
                 elif newItem.lower() == "revive":
                     if Money >= 3:
                         print("You successfully bought a revive.")
@@ -184,7 +199,7 @@ while True:
                         Item = "Revive"
                         break
                     else:
-                        print("You don't have enough money to afford that.")
+                        print("You don't have enough Money to afford that.")
                 else:
                     print("Can't buy that, it don't exist.")
             elif doThing == "scavenge":
@@ -206,7 +221,7 @@ while True:
                             print(f"You got caught by {Steal}!")
                             if Steal == "Sans":
                                 print(
-                                    "Sans wasn't upset you tried to steal. He had no money anyway. He just gave it a laugh.")
+                                    "Sans wasn't upset you tried to steal. He had no Money anyway. He just gave it a laugh.")
                                 PlayerValues["Sans"]["Friendliness"] += 5
                                 if PlayerValues["Sans"]["Friendliness"] > 100:
                                     PlayerValues["Sans"]["Friendliness"] = 100
@@ -223,7 +238,7 @@ while True:
                                             friendLowerValue = math.floor(0.3 * PlayerValues[Steal]["Friendliness"])
                                         PlayerValues[Steal]["Friendliness"] -= friendLowerValue
                                     else:
-                                        print(f"{Steal} just told you to ask for money next time.")
+                                        print(f"{Steal} just told you to ask for Money next time.")
                                         if PlayerValues[Steal]["Generosity"] > 50:
                                             PlayerValues[Steal]["Friendliness"] += 2
                                             if PlayerValues[Steal]["Friendliness"] > 100:
@@ -243,7 +258,7 @@ while True:
                                                 f"{Steal} stole {moneyStole} from you. You now have {Money} bottle-caps.")
                                         else:
                                             print(
-                                                f"You didn't have any money to steal, so {Steal} eliminated you instead.")
+                                                f"You didn't have any Money to steal, so {Steal} eliminated you instead.")
                                             EliminateUser()
                                             break
                         else:
