@@ -9,9 +9,9 @@ import random
 print("Hello World!")
 
 #Create three different boolean variables named wifi, login, and admin.
-wifi = random.randint(1, 3) >= 2 #66% chance wifi is true
-login = random.randint(1, 3) >= 2
-admin = random.randint(1, 3) >= 2
+wifi = True
+login = True
+admin = True
 
 #Create a separate integer variable that denotes the number of times someone with admin credentials has logged in.
 adminLogin = 0
