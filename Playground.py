@@ -7,8 +7,6 @@ import time
 import random
 import math
 
-from RPG import money
-
 Rounds = 0
 Item = None
 Money = 0
