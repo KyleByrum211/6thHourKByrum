@@ -65,12 +65,14 @@ PlayerValues = {
 }
 
 PlayerNames = ["John", "Stanly", "Logan", "AJ", "Coach Mack", "Kevin", "Flamingo Lord", "Purple Sus", "Sans"]
-NumbList1 = [random.randint(1, 100), random.randint(1, 100), random.randint(1, 100), random.randint(1, 100)]
-NumbList2 = [random.randint(1, 100), random.randint(1, 100), random.randint(1, 100), random.randint(1, 100)]
+LuckList = [random.randint(1, 6), random.randint(1, 6), random.randint(1, 6), random.randint(1, 6)]
+LuckList.sort()
+LuckList.remove(LuckList[0])
+Luck = LuckList[0] + LuckList[1] + LuckList[2]
+print(f"You have {Luck} luck.")
 
 #Ideas:
 #Make an item the player can collect that lowers their chance of being chosen
-#Make 2 lists with numbers in them and do math with them "Do whatever you feel is right"
 
 #Add the user to the game
 UserName = input("Please provide your name: ")
@@ -414,8 +416,3 @@ while True:
                 else:
                     EliminateUser()
                     break
-
-#Number lists stuff
-NumbList1.sort()
-NumbList2.sort()
-print(f"Your number is: {NumbList1[3] + NumbList2[3]}")
