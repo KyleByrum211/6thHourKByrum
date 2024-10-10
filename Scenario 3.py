@@ -52,35 +52,35 @@ Enemies = {
         "Race": "Robot",
         "Health": 6,
         "AtkMod": 1,
-        "Damage": [1, 6],
+        "Damage": [1, 6], #Rolls a single d6
         "AC": 12
     },
     "Robot 3": {
         "Race": "Robot",
         "Health": 15,
         "AtkMod": 4,
-        "Damage": [2, 6],
+        "Damage": [2, 6], #Rolls 2 d6's
         "AC": 13
     },
     "Robot 4": {
         "Race": "Robot",
         "Health": 9,
         "AtkMod": 5,
-        "Damage": [1, 2],
+        "Damage": [1, 2], #Rolls a single d2
         "AC": 10
     },
     "Robot 5": {
         "Race": "Robot",
         "Health": 12,
         "AtkMod": 3,
-        "Damage": [1, 4],
+        "Damage": [1, 4], #Rolls a single d4
         "AC": 15
     },
     "Mimic": {
         "Race": "Mimic",
         "Health": 25,
         "AtkMod": 1,
-        "Damage": [1, 12],
+        "Damage": [1, 12], #Rolls a single d4
         "AC": 13
     }
 }
@@ -92,34 +92,34 @@ partyDictionary = {
         "Health" : 12,
         "AtkMod": 3,
         "AC" : 17,
-        "Damage" : [2, 6],
+        "Damage" : [2, 6], #Rolls 2 d6's
     },
     "Shadowheart" : {
         "Race" : "Half-Elf",
         "Health" : 10,
         "AtkMod": 2,
         "AC" : 14,
-        "Damage" : [1, 6],
+        "Damage" : [1, 6], #Rolls a single d6
     },
     "Gale" : {
         "Race" : "Human",
         "Health" : 8,
         "AtkMod": 0,
         "AC" : 14,
-        "Damage" : [1, 10],
+        "Damage" : [1, 10], #Rolls a single d10
     },
     "Astarion" : {
         "Race" : "High Elf",
         "Health" : 10,
         "AtkMod": 4,
         "AC" : 14,
-        "Damage" : [1, 6],
+        "Damage" : [1, 6], #Rolls a single d6
     }
 }
 
 #Ask Teacher if he wants the lame beta simplified version or the cool giga-chad version :sunglasses:
 version = input("Do you want to see the simplified version or the complex version? (Simple/Complex): ")
-if version.lower() == "complex":
+if version.lower() == "complex" or version.lower() == "comp":
     version = True
 elif version.lower() == "simple":
     version = False
@@ -165,15 +165,14 @@ if version:
 
         if len(Enemies) == 0:
             print("The party members have defeated all of the enemies!")
+            print(f"The party members left were: {partyDictionary.keys()}")
             break
 
         if not fastMode:
             time.sleep(2)
         print("")
 
-        partyMemberAttacking = random.choice(list(partyDictionary.items()))
-        enemyAttacking = random.choice(list(Enemies.items()))
-        print(f"{enemyAttacking[0]} is attacking.")
+        print(f"{enemyAttacking[0]} is doing a counter attack.")
         if not fastMode:
             time.sleep(1)
         print(f"They are attacking {partyMemberAttacking[0]}.")
@@ -197,6 +196,7 @@ if version:
 
         if len(partyDictionary) == 0:
             print("The enemies have defeated all of the party members!")
+            print(f"The enemies left were: {Enemies.keys()}")
             break
 
         if not fastMode:
