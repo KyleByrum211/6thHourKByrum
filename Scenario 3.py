@@ -44,43 +44,46 @@ Enemies = {
     "Robot 1": {
         "Race": "Robot",
         "Health": 19,
-        "AtkMod": 2,
-        "Damage": [1, 6], #The first number in the list represents the amount of dice rolled, and the second number represents the value of the die. In this case, its 1 d6.
+        "AtkMod": 4,
+        "Damage": [1, 6, 2], #This is 1 d6.
+        #The first number in the list represents the amount of dice rolled.
+        #The second number represents the value of the die.
+        #The third number is how much damage will be added to the attack.
         "AC": 16
     },
     "Robot 2": {
         "Race": "Robot",
         "Health": 6,
-        "AtkMod": 1,
-        "Damage": [1, 6], #Rolls a single d6
+        "AtkMod": 3,
+        "Damage": [1, 6, 1], #Rolls a single d6
         "AC": 12
     },
     "Robot 3": {
         "Race": "Robot",
         "Health": 15,
-        "AtkMod": 4,
-        "Damage": [2, 6], #Rolls 2 d6's
+        "AtkMod": 5,
+        "Damage": [2, 6, 4], #Rolls 2 d6's
         "AC": 13
     },
     "Robot 4": {
         "Race": "Robot",
         "Health": 9,
-        "AtkMod": 5,
-        "Damage": [1, 2], #Rolls a single d2
+        "AtkMod": 6,
+        "Damage": [1, 2, 2], #Rolls a single d2
         "AC": 10
     },
     "Robot 5": {
         "Race": "Robot",
         "Health": 12,
-        "AtkMod": 3,
-        "Damage": [1, 4], #Rolls a single d4
+        "AtkMod": 4,
+        "Damage": [1, 4, 1], #Rolls a single d4
         "AC": 15
     },
     "Mimic": {
         "Race": "Mimic",
         "Health": 25,
-        "AtkMod": 1,
-        "Damage": [1, 12], #Rolls a single d4
+        "AtkMod": 7,
+        "Damage": [1, 12, 4], #Rolls a single d4
         "AC": 13
     }
 }
@@ -90,30 +93,30 @@ partyDictionary = {
     "LaeZel" : {
         "Race" : "Githyanki",
         "Health" : 12,
-        "AtkMod": 3,
+        "AtkMod": 5,
         "AC" : 17,
-        "Damage" : [2, 6], #Rolls 2 d6's
+        "Damage" : [2, 6, 3], #Rolls 2 d6's
     },
     "Shadowheart" : {
         "Race" : "Half-Elf",
         "Health" : 10,
-        "AtkMod": 2,
+        "AtkMod": 4,
         "AC" : 14,
-        "Damage" : [1, 6], #Rolls a single d6
+        "Damage" : [1, 6, 2], #Rolls a single d6
     },
     "Gale" : {
         "Race" : "Human",
         "Health" : 8,
-        "AtkMod": 0,
+        "AtkMod": 3,
         "AC" : 14,
-        "Damage" : [1, 10], #Rolls a single d10
+        "Damage" : [1, 10, 0], #Rolls a single d10
     },
     "Astarion" : {
         "Race" : "High Elf",
         "Health" : 10,
-        "AtkMod": 4,
+        "AtkMod": 6,
         "AC" : 14,
-        "Damage" : [1, 6], #Rolls a single d6
+        "Damage" : [1, 6, 4], #Rolls a single d6
     }
 }
 
@@ -148,11 +151,11 @@ if version:
         if not fastMode:
             time.sleep(1)
         d20 = random.randint(1, 20)
-        if d20 >= enemyAttacking[1]["AC"]:
+        if d20 + partyMemberAttacking[1]["AtkMod"] >= enemyAttacking[1]["AC"]:
             damageDelt = 0
             for i in range(partyMemberAttacking[1]["Damage"][0]):
                 damageDelt += random.randint(1, partyMemberAttacking[1]["Damage"][1])
-            damageDelt += partyMemberAttacking[1]["AtkMod"]
+            damageDelt += partyMemberAttacking[1]["Damage"][2]
             enemyAttacking[1]["Health"] -= damageDelt
             if enemyAttacking[1]["Health"] <= 0:
                 enemyAttacking[1]["Health"] = 0
@@ -183,7 +186,7 @@ if version:
             damageDelt = 0
             for i in range(enemyAttacking[1]["Damage"][0]):
                 damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
-            damageDelt += enemyAttacking[1]["AtkMod"]
+            damageDelt += enemyAttacking[1]["Damage"][2]
             partyMemberAttacking[1]["Health"] -= damageDelt
             if partyMemberAttacking[1]["Health"] <= 0:
                 partyMemberAttacking[1]["Health"] = 0
@@ -216,7 +219,7 @@ else:
         damageDelt = 0
         for i in range(partyMemberAttacking["Damage"][0]):
             damageDelt += random.randint(1, partyMemberAttacking["Damage"][1])
-        damageDelt += partyMemberAttacking["AtkMod"]
+        damageDelt += partyMemberAttacking["Damage"][2]
         enemyAttacking["Health"] -= damageDelt
         if enemyAttacking["Health"] <= 0:
             enemyAttacking["Health"] = 0
@@ -233,7 +236,7 @@ else:
         damageDelt = 0
         for i in range(enemyAttacking["Damage"][0]):
             damageDelt += random.randint(1, enemyAttacking["Damage"][1])
-        damageDelt += enemyAttacking["AtkMod"]
+        damageDelt += enemyAttacking["Damage"][2]
         partyMemberAttacking["Health"] -= damageDelt
         if partyMemberAttacking["Health"] <= 0:
             partyMemberAttacking["Health"] = 0
