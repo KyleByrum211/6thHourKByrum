@@ -1,7 +1,13 @@
+#Name: Kyle Byrum
+#Class: 6th Hour Computer Science
+
+#Imports and variables
 import time
 
+#Print This is an age calculator.
 print("This is an age calculator.")
 
+#Ask for the users age
 while True:
     try:
         age = int(input("Please input your age in years: "))
@@ -13,4 +19,5 @@ while True:
     except ValueError:
         print("I said input an age.")
 
+#Print the users age
 print(f"You are: {age} years old.")
