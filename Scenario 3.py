@@ -49,42 +49,48 @@ Enemies = {
         #The first number in the list represents the amount of dice rolled.
         #The second number represents the value of the die.
         #The third number is how much damage will be added to the attack. If it's a negative, it will subtract damage.
-        "AC": 16
+        "AC": 16,
+        "Class": "Tank"
     },
     "Robot 2": {
         "Race": "Robot",
         "Health": 6,
-        "AtkMod": 3,
-        "Damage": [1, 4, 0], #Rolls a single d4
-        "AC": 12
+        "AtkMod": 1,
+        "Damage": [2, 3, 0], #Rolls two d3
+        "AC": 12,
+        "Class": "Support"
     },
     "Robot 3": {
         "Race": "Robot",
         "Health": 15,
         "AtkMod": 5,
-        "Damage": [2, 6, 4], #Rolls 2 d6's
-        "AC": 13
+        "Damage": [2, 6, 4], #Rolls two d6
+        "AC": 13,
+        "Class": "Melee"
     },
     "Robot 4": {
         "Race": "Robot",
         "Health": 4,
         "AtkMod": 6,
         "Damage": [3, 6, -3], #Rolls three d6
-        "AC": 9
+        "AC": 9,
+        "Class": "Ranger"
     },
     "Robot 5": {
         "Race": "Robot",
         "Health": 12,
         "AtkMod": 4,
         "Damage": [1, 4, 1], #Rolls a single d4
-        "AC": 15
+        "AC": 15,
+        "Class": "Spy"
     },
     "Mimic": {
         "Race": "Mimic",
         "Health": 25,
         "AtkMod": 7,
         "Damage": [3, 4, 2], #Rolls three d4
-        "AC": 13
+        "AC": 13,
+        "Class": "Melee"
     }
 }
 
@@ -92,6 +98,7 @@ Enemies = {
 partyDictionary = {
     "LaeZel" : {
         "Race" : "Githyanki",
+        "Class" : "Fighter",
         "Health" : 12,
         "AtkMod": 5,
         "AC" : 17,
@@ -99,6 +106,7 @@ partyDictionary = {
     },
     "Shadowheart" : {
         "Race" : "Half-Elf",
+        "Class": "Cleric",
         "Health" : 10,
         "AtkMod": 4,
         "AC" : 14,
@@ -106,6 +114,7 @@ partyDictionary = {
     },
     "Gale" : {
         "Race" : "Human",
+        "Class": "Wizard",
         "Health" : 8,
         "AtkMod": 3,
         "AC" : 14,
@@ -113,6 +122,7 @@ partyDictionary = {
     },
     "Astarion" : {
         "Race" : "High Elf",
+        "Class": "Rogue",
         "Health" : 10,
         "AtkMod": 6,
         "AC" : 14,
@@ -144,27 +154,44 @@ if version:
     while True:
         partyMemberAttacking = random.choice(list(partyDictionary.items()))
         enemyAttacking = random.choice(list(Enemies.items()))
-        print(f"{partyMemberAttacking[0]} is attacking.")
-        if not fastMode:
-            time.sleep(1)
-        print(f"They are attacking {enemyAttacking[0]}.\n")
-        if not fastMode:
-            time.sleep(1)
-        d20 = random.randint(1, 20)
-        if d20 + partyMemberAttacking[1]["AtkMod"] >= enemyAttacking[1]["AC"]:
+        if partyMemberAttacking[1]["Class"] != "Cleric":
+            print(f"{partyMemberAttacking[0]} is attacking.")
+            if not fastMode:
+                time.sleep(1)
+            print(f"They are attacking {enemyAttacking[0]}.\n")
+            if not fastMode:
+                time.sleep(1)
+            d20 = random.randint(1, 20)
+            if d20 + partyMemberAttacking[1]["AtkMod"] >= enemyAttacking[1]["AC"]:
+                damageDelt = 0
+                for i in range(partyMemberAttacking[1]["Damage"][0]):
+                    damageDelt += random.randint(1, partyMemberAttacking[1]["Damage"][1])
+                damageDelt += partyMemberAttacking[1]["Damage"][2]
+                enemyAttacking[1]["Health"] -= damageDelt
+                if enemyAttacking[1]["Health"] <= 0:
+                    enemyAttacking[1]["Health"] = 0
+                    print(f"{partyMemberAttacking[0]} killed {enemyAttacking[0]}!")
+                    Enemies.pop(enemyAttacking[0])
+                else:
+                    print(f"{enemyAttacking[0]} was hit by {partyMemberAttacking[0]} and now has {enemyAttacking[1]["Health"]} health.")
+            else:
+                print(f"{partyMemberAttacking[0]}'s attack roll was lower than the enemies AC and did not hit.")
+        else:
+            print(f"{partyMemberAttacking[0]} has chosen to heal his fellow enemies.")
+            partyHealed = partyMemberAttacking
+            while partyHealed[0] == partyMemberAttacking[0]:
+                partyHealed = random.choice(list(partyDictionary.items()))
+            if not fastMode:
+                time.sleep(1)
+            print(f"{partyMemberAttacking[0]} has chose to heal {partyHealed[0]}.")
+            if not fastMode:
+                time.sleep(1)
             damageDelt = 0
             for i in range(partyMemberAttacking[1]["Damage"][0]):
                 damageDelt += random.randint(1, partyMemberAttacking[1]["Damage"][1])
             damageDelt += partyMemberAttacking[1]["Damage"][2]
-            enemyAttacking[1]["Health"] -= damageDelt
-            if enemyAttacking[1]["Health"] <= 0:
-                enemyAttacking[1]["Health"] = 0
-                print(f"{partyMemberAttacking[0]} killed {enemyAttacking[0]}!")
-                Enemies.pop(enemyAttacking[0])
-            else:
-                print(f"{enemyAttacking[0]} was hit by {partyMemberAttacking[0]} and now has {enemyAttacking[1]["Health"]} health.")
-        else:
-            print(f"{partyMemberAttacking[0]}'s attack roll was lower than the enemies AC and did not hit.")
+            partyHealed[1]["Health"] += damageDelt
+            print(f"{partyMemberAttacking[0]} healed for {damageDelt}.")
 
         if len(Enemies) == 0:
             print("The party members have defeated all of the enemies!")
@@ -175,32 +202,49 @@ if version:
             time.sleep(2)
         print("")
 
-        print(f"{enemyAttacking[0]} is doing a counter attack.")
-        if not fastMode:
-            time.sleep(1)
-        print(f"They are attacking {partyMemberAttacking[0]}.")
-        if not fastMode:
-            time.sleep(1)
-        d20 = random.randint(1, 20)
-        if d20 >= partyMemberAttacking[1]["AC"]:
+        if enemyAttacking[1]["Class"] != "Support":
+            print(f"{enemyAttacking[0]} is doing a counter attack.")
+            if not fastMode:
+                time.sleep(1)
+            print(f"They are attacking {partyMemberAttacking[0]}.")
+            if not fastMode:
+                time.sleep(1)
+            d20 = random.randint(1, 20)
+            if d20 >= partyMemberAttacking[1]["AC"]:
+                damageDelt = 0
+                for i in range(enemyAttacking[1]["Damage"][0]):
+                    damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
+                damageDelt += enemyAttacking[1]["Damage"][2]
+                partyMemberAttacking[1]["Health"] -= damageDelt
+                if partyMemberAttacking[1]["Health"] <= 0:
+                    partyMemberAttacking[1]["Health"] = 0
+                    print(f"{enemyAttacking[0]} killed {partyMemberAttacking[0]}!")
+                    partyDictionary.pop(partyMemberAttacking[0])
+                else:
+                    print(f"{partyMemberAttacking[0]} was hit by {enemyAttacking[0]} and now has {partyMemberAttacking[1]["Health"]} health.")
+            else:
+                print(f"{enemyAttacking[0]}'s attack roll was lower than the party member's AC and did not hit.")
+
+            if len(partyDictionary) == 0:
+                print("The enemies have defeated all of the party members!")
+                print(f"The enemies left were: {Enemies.keys()}")
+                break
+        else:
+            print(f"{enemyAttacking[0]} has chosen to heal his fellow enemies.")
+            enemyHealed = enemyAttacking
+            while enemyHealed[0] == enemyAttacking[0]:
+                enemyHealed = random.choice(list(Enemies.items()))
+            if not fastMode:
+                time.sleep(1)
+            print(f"{enemyAttacking[0]} has chose to heal {enemyHealed[0]}.")
+            if not fastMode:
+                time.sleep(1)
             damageDelt = 0
             for i in range(enemyAttacking[1]["Damage"][0]):
                 damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
             damageDelt += enemyAttacking[1]["Damage"][2]
-            partyMemberAttacking[1]["Health"] -= damageDelt
-            if partyMemberAttacking[1]["Health"] <= 0:
-                partyMemberAttacking[1]["Health"] = 0
-                print(f"{enemyAttacking[0]} killed {partyMemberAttacking[0]}!")
-                partyDictionary.pop(partyMemberAttacking[0])
-            else:
-                print(f"{partyMemberAttacking[0]} was hit by {enemyAttacking[0]} and now has {partyMemberAttacking[1]["Health"]} health.")
-        else:
-            print(f"{enemyAttacking[0]}'s attack roll was lower than the party member's AC and did not hit.")
-
-        if len(partyDictionary) == 0:
-            print("The enemies have defeated all of the party members!")
-            print(f"The enemies left were: {Enemies.keys()}")
-            break
+            enemyHealed[1]["Health"] += damageDelt
+            print(f"{enemyAttacking[0]} healed for {damageDelt}.")
 
         if not fastMode:
             time.sleep(2)
