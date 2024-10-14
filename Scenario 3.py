@@ -48,14 +48,14 @@ Enemies = {
         "Damage": [1, 6, 2], #This is 1 d6.
         #The first number in the list represents the amount of dice rolled.
         #The second number represents the value of the die.
-        #The third number is how much damage will be added to the attack.
+        #The third number is how much damage will be added to the attack. If it's a negative, it will subtract damage.
         "AC": 16
     },
     "Robot 2": {
         "Race": "Robot",
         "Health": 6,
         "AtkMod": 3,
-        "Damage": [1, 6, 1], #Rolls a single d6
+        "Damage": [1, 4, 0], #Rolls a single d4
         "AC": 12
     },
     "Robot 3": {
@@ -67,10 +67,10 @@ Enemies = {
     },
     "Robot 4": {
         "Race": "Robot",
-        "Health": 9,
+        "Health": 4,
         "AtkMod": 6,
-        "Damage": [1, 2, 2], #Rolls a single d2
-        "AC": 10
+        "Damage": [3, 6, -3], #Rolls three d6
+        "AC": 9
     },
     "Robot 5": {
         "Race": "Robot",
@@ -83,7 +83,7 @@ Enemies = {
         "Race": "Mimic",
         "Health": 25,
         "AtkMod": 7,
-        "Damage": [1, 12, 4], #Rolls a single d4
+        "Damage": [3, 4, 2], #Rolls three d4
         "AC": 13
     }
 }
