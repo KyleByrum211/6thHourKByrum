@@ -5,6 +5,7 @@
 #imports and variables
 import random
 import time
+battleTime = 0
 
 #Scenario 3:
 #Now that the game development team has a dictionary for enemies
@@ -164,9 +165,11 @@ if version:
                 partyHealed = random.choice(list(partyDictionary.items()))
             if not fastMode:
                 time.sleep(1)
+                battleTime += 1
             print(f"{partyMemberAttacking[0]} has chose to heal {partyHealed[0]}.")
             if not fastMode:
                 time.sleep(1)
+                battleTime += 1
             damageDelt = 0
             for i in range(partyMemberAttacking[1]["Damage"][0]):
                 damageDelt += random.randint(1, partyMemberAttacking[1]["Damage"][1])
@@ -177,9 +180,11 @@ if version:
             print(f"{partyMemberAttacking[0]} is attacking.")
             if not fastMode:
                 time.sleep(1)
+                battleTime += 1
             print(f"They are attacking {enemyAttacking[0]}.\n")
             if not fastMode:
                 time.sleep(1)
+                battleTime += 1
             d20 = random.randint(1, 20)
             if d20 + partyMemberAttacking[1]["AtkMod"] >= enemyAttacking[1]["AC"]:
                 damageDelt = 0
@@ -198,66 +203,75 @@ if version:
                 print(f"{partyMemberAttacking[0]}'s attack roll was lower than the enemies AC and did not hit.")
 
         if len(Enemies) == 0:
-            print("The party members have defeated all of the enemies!")
+            print("\nThe party members have defeated all of the enemies!")
             print("The party members left were:")
             for member in partyDictionary:
                 print(f"{member}, who had {partyDictionary[member]["Health"]} health left.")
+            print(f"The amount of time it took to complete the battle was {battleTime} seconds.")
             break
 
         if not fastMode:
             time.sleep(2)
+            battleTime += 2
         print("")
 
-        choseAttack = random.randint(1, 3)
-        if choseAttack <= 2 and enemyAttacking[1]["Class"] == "Support":
-            print(f"{enemyAttacking[0]} has chosen to heal his fellow enemies.")
-            enemyHealed = enemyAttacking
-            while enemyHealed[0] == enemyAttacking[0]:
-                enemyHealed = random.choice(list(Enemies.items()))
-            if not fastMode:
-                time.sleep(1)
-            print(f"{enemyAttacking[0]} has chose to heal {enemyHealed[0]}.")
-            if not fastMode:
-                time.sleep(1)
-            damageDelt = 0
-            for i in range(enemyAttacking[1]["Damage"][0]):
-                damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
-            damageDelt += enemyAttacking[1]["Damage"][2]
-            enemyHealed[1]["Health"] += damageDelt
-            print(f"{enemyAttacking[0]} healed for {damageDelt}.")
+        if enemyAttacking[1]["Health"] > 0:
+            choseAttack = random.randint(1, 3)
+            if choseAttack <= 2 and enemyAttacking[1]["Class"] == "Support":
+                print(f"{enemyAttacking[0]} has chosen to heal his fellow enemies.")
+                enemyHealed = enemyAttacking
+                while enemyHealed[0] == enemyAttacking[0]:
+                    enemyHealed = random.choice(list(Enemies.items()))
+                if not fastMode:
+                    time.sleep(1)
+                    battleTime += 1
+                print(f"{enemyAttacking[0]} has chose to heal {enemyHealed[0]}.")
+                if not fastMode:
+                    time.sleep(1)
+                    battleTime += 1
+                damageDelt = 0
+                for i in range(enemyAttacking[1]["Damage"][0]):
+                    damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
+                damageDelt += enemyAttacking[1]["Damage"][2]
+                enemyHealed[1]["Health"] += damageDelt
+                print(f"{enemyAttacking[0]} healed for {damageDelt}.")
 
-        else:
-            print(f"{enemyAttacking[0]} is doing a counter attack.")
-        if not fastMode:
-            time.sleep(1)
-        print(f"They are attacking {partyMemberAttacking[0]}.")
-        if not fastMode:
-            time.sleep(1)
-        d20 = random.randint(1, 20)
-        if d20 >= partyMemberAttacking[1]["AC"]:
-            damageDelt = 0
-            for i in range(enemyAttacking[1]["Damage"][0]):
-                damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
-            damageDelt += enemyAttacking[1]["Damage"][2]
-            partyMemberAttacking[1]["Health"] -= damageDelt
-            if partyMemberAttacking[1]["Health"] <= 0:
-                partyMemberAttacking[1]["Health"] = 0
-                print(f"{enemyAttacking[0]} killed {partyMemberAttacking[0]}!")
-                partyDictionary.pop(partyMemberAttacking[0])
             else:
-                print(f"{partyMemberAttacking[0]} was hit by {enemyAttacking[0]} and now has {partyMemberAttacking[1]["Health"]} health.")
-        else:
-            print(f"{enemyAttacking[0]}'s attack roll was lower than the party member's AC and did not hit.")
+                print(f"{enemyAttacking[0]} is doing a counter attack.")
+            if not fastMode:
+                time.sleep(1)
+                battleTime += 1
+            print(f"They are attacking {partyMemberAttacking[0]}.")
+            if not fastMode:
+                time.sleep(1)
+                battleTime += 1
+            d20 = random.randint(1, 20)
+            if d20 >= partyMemberAttacking[1]["AC"]:
+                damageDelt = 0
+                for i in range(enemyAttacking[1]["Damage"][0]):
+                    damageDelt += random.randint(1, enemyAttacking[1]["Damage"][1])
+                damageDelt += enemyAttacking[1]["Damage"][2]
+                partyMemberAttacking[1]["Health"] -= damageDelt
+                if partyMemberAttacking[1]["Health"] <= 0:
+                    partyMemberAttacking[1]["Health"] = 0
+                    print(f"{enemyAttacking[0]} killed {partyMemberAttacking[0]}!")
+                    partyDictionary.pop(partyMemberAttacking[0])
+                else:
+                    print(f"{partyMemberAttacking[0]} was hit by {enemyAttacking[0]} and now has {partyMemberAttacking[1]["Health"]} health.")
+            else:
+                print(f"{enemyAttacking[0]}'s attack roll was lower than the party member's AC and did not hit.")
 
         if len(partyDictionary) == 0:
-            print("The enemies have defeated all of the party members!")
+            print("\nThe enemies have defeated all of the party members!")
             print("The enemies left were:")
             for enemy in Enemies:
                 print(f"{enemy}, who had {Enemies[enemy]["Health"]} health left.")
+            print(f"The amount of time it took to complete the battle was {battleTime} seconds.")
             break
 
         if not fastMode:
             time.sleep(2)
+            battleTime += 2
         print("")
 
 
