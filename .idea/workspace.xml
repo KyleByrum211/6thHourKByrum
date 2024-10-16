@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added healing to certain classes.">
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added an elasped battle time feature to show how long the battle took.">
+      <change afterPath="$PROJECT_DIR$/Age Calc.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scenario 3.py" beforeDir="false" afterPath="$PROJECT_DIR$/Scenario 3.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,26 +47,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.HW1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HW2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HW3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HW4.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HW5.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HW6.executor&quot;: &quot;Run&quot;,
-    &quot;Python.HW7.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Hello world!.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Playground.executor&quot;: &quot;Run&quot;,
-    &quot;Python.RPG.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Scenario 1.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Scenario 2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Scenario 3.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Python&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Age Calc.executor": "Run",
+    "Python.HW1.executor": "Run",
+    "Python.HW2.executor": "Run",
+    "Python.HW3.executor": "Run",
+    "Python.HW4.executor": "Run",
+    "Python.HW5.executor": "Run",
+    "Python.HW6.executor": "Run",
+    "Python.HW7.executor": "Run",
+    "Python.Hello world!.executor": "Run",
+    "Python.Playground.executor": "Run",
+    "Python.RPG.executor": "Run",
+    "Python.Scenario 1.executor": "Run",
+    "Python.Scenario 2.executor": "Run",
+    "Python.Scenario 3.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Python"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -299,12 +300,26 @@
       <option name="project" value="LOCAL" />
       <updated>1728932133725</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Made the team wipe message far better.">
+      <option name="closed" value="true" />
+      <created>1729018577715</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1729018577715</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Added an elasped battle time feature to show how long the battle took.">
+      <option name="closed" value="true" />
+      <created>1729019599454</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1729019599454</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="Added HW1" />
     <MESSAGE value="Added HW2" />
     <MESSAGE value="Added HW3" />
     <MESSAGE value="Changed HW3 to say HW3 and not HW2" />
@@ -328,6 +343,8 @@
     <MESSAGE value="Changed Scenario 3 to use AtkMod correctly." />
     <MESSAGE value="Changed Scenario 3 damage values." />
     <MESSAGE value="Added healing to certain classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added healing to certain classes." />
+    <MESSAGE value="Made the team wipe message far better." />
+    <MESSAGE value="Added an elasped battle time feature to show how long the battle took." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an elasped battle time feature to show how long the battle took." />
   </component>
 </project>
