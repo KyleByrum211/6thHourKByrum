@@ -35,11 +35,11 @@ intVar21 = 3
 intVar22 = 2
 intVar23 = 1
 listVar24 = ["Liftoff", True]
-Var25 = boolVar11
-Var26 = boolVar12
-Var27 = strVar13
-Var28 = strVar14
-Var29 = listVar15
+boolVar25 = boolVar11
+boolVar26 = boolVar12
+strVar27 = strVar13
+strVar28 = strVar14
+listVar29 = listVar15
 intVar30 = 6
 
 #3. Take all the variables you labeled as "integer", add them together, and print the result.
