@@ -69,6 +69,7 @@ LuckList = [random.randint(1, 6), random.randint(1, 6), random.randint(1, 6), ra
 LuckList.sort()
 LuckList.remove(LuckList[0])
 Luck = LuckList[0] + LuckList[1] + LuckList[2]
+
 print(f"You have {Luck} luck.")
 
 #Ideas:
