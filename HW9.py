@@ -3,9 +3,8 @@
 #Assignment: HW9
 
 #Variables and Imports
-#import random
-#temperature = random.randint(1, 25)
-temperature = 11
+import random
+temperature = random.randint(1, 25)
 
 #1. Print Hello World!
 print("Hello World!")
