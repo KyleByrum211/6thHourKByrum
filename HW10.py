@@ -22,6 +22,7 @@ while j <= 30:
         print(j)
     j += 1
     time.sleep(0.25)
+
 #3. Create a while loop that repeats until the user inputs the number 0.
 while k != "0":
     print("")
