@@ -9,7 +9,7 @@ import math
 
 Rounds = 0
 Item = None
-Money = 0
+Caps = 0
 Hiding = False
 
 PlayerValues = {
@@ -19,47 +19,47 @@ PlayerValues = {
     #Generosity is how willing the person is to help you 
     "John": {
         "Friendliness": 80,
-        "Money": 2,
+        "Caps": 2,
         "Generosity": 50,
     },
     "Stanly": {
         "Friendliness": 50,
-        "Money": 5,
+        "Caps": 5,
         "Generosity": 15
     },
     "Logan": {
         "Friendliness": 90,
-        "Money": 1,
+        "Caps": 1,
         "Generosity": 25
     },
     "AJ": {
         "Friendliness": 70,
-        "Money": 2,
+        "Caps": 2,
         "Generosity": 10
     },
     "Coach Mack": {
         "Friendliness": 95,
-        "Money": 3,
+        "Caps": 3,
         "Generosity": 25
     },
     "Kevin": {
         "Friendliness": 15,
-        "Money": 4,
+        "Caps": 4,
         "Generosity": 0
     },
     "Flamingo Lord": {
         "Friendliness": 0,
-        "Money": 20,
+        "Caps": 20,
         "Generosity": 0
     },
     "Purple Sus": {
         "Friendliness": 100,
-        "Money": 6,
+        "Caps": 6,
         "Generosity": 50
     },
     "Sans": {
         "Friendliness": 50,
-        "Money": 0,
+        "Caps": 0,
         "Generosity": 100
     },
 }
@@ -97,12 +97,12 @@ SelectedChance = 1 / maxPlayers
 while True:
     #Pick a player and remove them from the list
 
-    #PICK A random number and test to see if it's a safe round where the player can search for Money or go to the shop or ect...
+    #PICK A random number and test to see if it's a safe round where the player can search for Caps or go to the shop or ect...
     if random.random() > 0.85:
         print("\nNo one was selected, it is a safe round.")
         while True:
-            print(f"You have {Money} bottle-caps.")
-            print("You can enter the shop, scavenge for Money, steal items from players, or hide from the next round.")
+            print(f"You have {Caps} bottle-caps.")
+            print("You can enter the shop, scavenge for Caps, steal items from players, or hide from the next round.")
             doThing = input("What would you like to do? (Shop/Scavenge/Steal/Hide/Gamble): ")
             doThing = doThing.lower()
             if doThing == "gamble":
@@ -117,23 +117,23 @@ while True:
                         except ValueError:
                             print("That is not a valid amount of bottle-caps.")
                             moneySpent = 0
-                        if 0 < moneySpent <= Money:
-                            if Money > 0:
+                        if 0 < moneySpent <= Caps:
+                            if Caps > 0:
                                 wheel = random.randint(1, 17)
                                 if wheel <= 5:
-                                    Money -= 1
+                                    Caps -= 1
                                     print("You lost a bottle-cap.")
                                 elif wheel <= 10:
-                                    Money += 1
+                                    Caps += 1
                                     print("You won a bottle-cap!")
                                 elif wheel <= 13:
-                                    Money -= moneySpent
+                                    Caps -= moneySpent
                                     print("You lost all of the bottle-caps you gambled.")
                                 elif wheel <= 16:
-                                    Money += moneySpent
+                                    Caps += moneySpent
                                     print("You just won the amount of bottle-caps you gambled!!")
                                 elif wheel <= 17:
-                                    Money += moneySpent * 5
+                                    Caps += moneySpent * 5
                                     print("Jackpot!!!!!!!!!!! You just won 5 times the amount you gambled!!")
                             else:
                                 print("You broke fool")
@@ -141,22 +141,22 @@ while True:
                         print("You chose to gamble at the wheel.")
                         slots = input("Would you like to spend 2 bottle-caps to use the machine? (Yes/No): ")
                         if slots.lower() == "yes":
-                            if Money >= 2:
+                            if Caps >= 2:
                                 slots = random.random()
                                 if slots >= 0.999:
-                                    Money += 100
-                                    print("You got the jackpot! That's a 0.1% chance! You'll never run out of bottle-caps again.")
+                                    Caps += 100
+                                    print("You got the jackpot! You receive 100 bottle-caps.")
                                 elif slots >= 0.98:
-                                    Money += 20
-                                    print("Nice you got lucky! 2% chance for a good sum of bottle-caps.")
+                                    Caps += 20
+                                    print("Nice you got lucky! You gained 20 bottle-caps.")
                                 elif slots >= 0.78:
-                                    Money += 6
-                                    print("you got the 20%. That's some decent bottle-caps.")
+                                    Caps += 6
+                                    print("You won 6 bottle-caps!")
                                 elif slots >= 0.38:
-                                    Money += 1
-                                    print("You got the 40% chance. You get a single bottlecap.")
+                                    Caps += 1
+                                    print("You won a single bottlecap.")
                                 else:
-                                    Money -= 2
+                                    Caps -= 2
                                     print("You lost the two bottle-caps you paid to use the machine.")
                             else:
                                 print("You don't have enough bottle-caps to use the machine.")
@@ -167,12 +167,12 @@ while True:
                         except ValueError:
                             print("That is not a valid amount of bottle-caps.")
                             moneySpent = 0
-                        if 0 < moneySpent <= Money:
+                        if 0 < moneySpent <= Caps:
                             if random.random() <= 0.49:
-                                Money += moneySpent
+                                Caps += moneySpent
                                 print("You won the coin flip! The bottle-caps you gambled is doubled!")
                             else:
-                                Money -= moneySpent
+                                Caps -= moneySpent
                                 print("You lost the coin flip. You lost all the bottle-caps you gambled.")
                     elif Gamble == "leave":
                         break
@@ -183,29 +183,29 @@ while True:
                     print("You walk into the shop ran by Flamingo Lord.")
                 else:
                     print("You walk into the shop that Flamingo Lord used to run.")
-                print(f"You can buy some items from here if you have enough bottle-caps. Currently, you have {Money} bottle-caps.\n A disliking will cost 2 bottle-caps and a revive costs 3.")
+                print(f"You can buy some items from here if you have enough bottle-caps. Currently, you have {Caps} bottle-caps.\n A disliking will cost 2 bottle-caps and a revive costs 3.")
                 newItem = input("What would you like to buy? (Disliking/Revive): ")
                 if newItem.lower() == "disliking":
-                    if Money >= 2:
+                    if Caps >= 2:
                         print("You successfully bought a disliking.")
-                        Money -= 2
+                        Caps -= 2
                         Item = "Disliking"
                         break
                     else:
-                        print("You don't have enough Money to afford that.")
+                        print("You don't have enough Caps to afford that.")
                 elif newItem.lower() == "revive":
-                    if Money >= 3:
+                    if Caps >= 3:
                         print("You successfully bought a revive.")
-                        Money -= 3
+                        Caps -= 3
                         Item = "Revive"
                         break
                     else:
-                        print("You don't have enough Money to afford that.")
+                        print("You don't have enough Caps to afford that.")
                 else:
                     print("Can't buy that, it don't exist.")
             elif doThing == "scavenge":
-                Money += random.randint(1, 3)
-                print(f"You found some bottle-caps sitting next to a skeleton on the ground. You now have {Money} bottle-caps.")
+                Caps += random.randint(1, 3)
+                print(f"You found some bottle-caps sitting next to a skeleton on the ground. You now have {Caps} bottle-caps.")
                 break
             elif doThing.lower() == "steal":
                 print("Who do you want to steal from? Your options are:")
@@ -222,7 +222,7 @@ while True:
                             print(f"You got caught by {Steal}!")
                             if Steal == "Sans":
                                 print(
-                                    "Sans wasn't upset you tried to steal. He had no Money anyway. He just gave it a laugh.")
+                                    "Sans wasn't upset you tried to steal. He had no Caps anyway. He just gave it a laugh.")
                                 PlayerValues["Sans"]["Friendliness"] += 5
                                 if PlayerValues["Sans"]["Friendliness"] > 100:
                                     PlayerValues["Sans"]["Friendliness"] = 100
@@ -239,7 +239,7 @@ while True:
                                             friendLowerValue = math.floor(0.3 * PlayerValues[Steal]["Friendliness"])
                                         PlayerValues[Steal]["Friendliness"] -= friendLowerValue
                                     else:
-                                        print(f"{Steal} just told you to ask for Money next time.")
+                                        print(f"{Steal} just told you to ask for Caps next time.")
                                         if PlayerValues[Steal]["Generosity"] > 50:
                                             PlayerValues[Steal]["Friendliness"] += 2
                                             if PlayerValues[Steal]["Friendliness"] > 100:
@@ -251,15 +251,15 @@ while True:
                                         print(
                                             f"{Steal} warned if you ever tried to steal from them again it wont end nicely next time.")
                                     else:
-                                        if Money > 0:
+                                        if Caps > 0:
                                             print(f"{Steal} stole some bottle-caps from you to teach you a lesson.")
-                                            moneyStole = random.randint(1, Money)
-                                            Money -= moneyStole
+                                            moneyStole = random.randint(1, Caps)
+                                            Caps -= moneyStole
                                             print(
-                                                f"{Steal} stole {moneyStole} from you. You now have {Money} bottle-caps.")
+                                                f"{Steal} stole {moneyStole} from you. You now have {Caps} bottle-caps.")
                                         else:
                                             print(
-                                                f"You didn't have any Money to steal, so {Steal} eliminated you instead.")
+                                                f"You didn't have any Caps to steal, so {Steal} eliminated you instead.")
                                             EliminateUser()
                                             break
                         else:
@@ -267,13 +267,13 @@ while True:
                                 print(
                                     "You tried to look for something to steal. All you found was a receipt from Grillby's and a note asking sans to pay his tab.")
                             else:
-                                if PlayerValues[Steal]["Money"] > 0:
+                                if PlayerValues[Steal]["Caps"] > 0:
                                     print(f"You stole from {Steal} successfully.")
-                                    moneyStole = math.floor(0.2 * PlayerValues[Steal]["Money"])
+                                    moneyStole = math.floor(0.2 * PlayerValues[Steal]["Caps"])
                                     if moneyStole < 1:
                                         moneyStole = 1
-                                    Money += moneyStole
-                                    PlayerValues[Steal]["Money"] -= moneyStole
+                                    Caps += moneyStole
+                                    PlayerValues[Steal]["Caps"] -= moneyStole
                                     time.sleep(1)
                                     print(f"You stole {moneyStole} bottle-caps from {Steal}.")
                                 else:
@@ -309,7 +309,7 @@ while True:
             print(f"{picked_player} has been chosen.")
             PlayerNames.remove(picked_player)
             if random.randint(1, 4) > 1:
-                Money += 1
+                Caps += 1
                 moneyReceiveMessages = [f"{picked_player} dropped a bottle-cap you snatched before anyone else could.", "A skeleton just appeared out of nowhere and handed you a bottle-cap.", "A boat load of bottle-caps fell from the sky. Sadly, most of them fell into the nearby drain and you only managed to collect 1.", "The fans watching this donated a single bottle-cap to you specifically."]
                 print(random.choice(moneyReceiveMessages))
             if random.randint(1, 5) == 1:
@@ -387,7 +387,7 @@ while True:
             if maxPlayers == 1:
                 time.sleep(1.5)
                 print(f"\nCongratulations, you survived the playground! You managed to live all {Rounds} rounds!")
-                print(f"You collected {Money} bottle-caps.")
+                print(f"You collected {Caps} bottle-caps.")
                 if Item is not None:
                     print(f"You had a {Item} that you didn't use.")
                 else:
