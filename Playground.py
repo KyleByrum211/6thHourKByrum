@@ -183,8 +183,8 @@ while True:
                     print("You walk into the shop ran by Flamingo Lord.")
                 else:
                     print("You walk into the shop that Flamingo Lord used to run.")
-                print(f"You can buy some items from here if you have enough bottle-caps. Currently, you have {Caps} bottle-caps.\n A disliking will cost 2 bottle-caps and a revive costs 3.")
-                newItem = input("What would you like to buy? (Disliking/Revive): ")
+                print(f"You can buy some items from here if you have enough bottle-caps. Currently, you have {Caps} bottle-caps.\n A disliking will cost 2 bottle-caps, revive costs 3, and a Golden Button costs 200.")
+                newItem = input("What would you like to buy? (Disliking/Revive/Button): ")
                 if newItem.lower() == "disliking":
                     if Caps >= 2:
                         print("You successfully bought a disliking.")
@@ -198,6 +198,14 @@ while True:
                         print("You successfully bought a revive.")
                         Caps -= 3
                         Item = "Revive"
+                        break
+                    else:
+                        print("You don't have enough Caps to afford that.")
+                elif newItem.lower() == "button":
+                    if Caps >= 200:
+                        print("You successfully bought a golden button.")
+                        Caps -= 200
+                        Item = "Button"
                         break
                     else:
                         print("You don't have enough Caps to afford that.")
@@ -388,8 +396,10 @@ while True:
                 time.sleep(1.5)
                 print(f"\nCongratulations, you survived the playground! You managed to live all {Rounds} rounds!")
                 print(f"You collected {Caps} bottle-caps.")
-                if Item is not None:
+                if Item is not None and Item != "Button":
                     print(f"You had a {Item} that you didn't use.")
+                elif Item == "Button":
+                    print("You win!! You actually won. Like that's it. Good job. \nYou're good at gambling. And being lucky.")
                 else:
                     print("You had no item.")
                 break
