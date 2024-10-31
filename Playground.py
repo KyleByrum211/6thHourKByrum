@@ -108,7 +108,7 @@ while True:
             if doThing == "gamble":
                 while True:
                     print("Lets go gambling!!!")
-                    Gamble = input("Where would you like to gamble? (Wheel/Slot Machine/Coin Flip/Leave): ")
+                    Gamble = input("Where would you like to gamble? (Wheel/Slot/Coin/Leave): ")
                     Gamble = Gamble.lower()
                     if Gamble == "wheel":
                         print("You chose to gamble at the wheel.")
@@ -137,8 +137,8 @@ while True:
                                     print("Jackpot!!!!!!!!!!! You just won 5 times the amount you gambled!!")
                             else:
                                 print("You broke fool")
-                    elif Gamble == "slot machine":
-                        print("You chose to gamble at the wheel.")
+                    elif Gamble == "slot":
+                        print("You chose to gamble at the slot machine.")
                         slots = input("Would you like to spend 2 bottle-caps to use the machine? (Yes/No): ")
                         if slots.lower() == "yes":
                             if Caps >= 2:
@@ -149,7 +149,7 @@ while True:
                                 elif slots >= 0.98:
                                     Caps += 20
                                     print("Nice you got lucky! You gained 20 bottle-caps.")
-                                elif slots >= 0.78:
+                                elif slots >= 0.88:
                                     Caps += 6
                                     print("You won 6 bottle-caps!")
                                 elif slots >= 0.38:
@@ -160,7 +160,7 @@ while True:
                                     print("You lost the two bottle-caps you paid to use the machine.")
                             else:
                                 print("You don't have enough bottle-caps to use the machine.")
-                    elif Gamble == "coin flip":
+                    elif Gamble == "coin":
                         print("You chose to gamble by coin flip. There is a 50% chance you double your money and a 50% chance you lose it.")
                         try:
                             moneySpent = int(input("How many bottle-caps would you like to gamble away?: "))
