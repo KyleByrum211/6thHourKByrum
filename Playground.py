@@ -11,6 +11,7 @@ Rounds = 0
 Item = None
 Caps = 0
 Hiding = False
+InBattle = False
 
 PlayerValues = {
     #In Friendliness, 0 is the lowest, 100 is the highest, 50 is neutral
@@ -83,6 +84,69 @@ if UserName not in PlayerNames:
     PlayerNames.append(UserName)
 maxPlayers = len(PlayerNames)
 input("Press enter to continue. ")
+
+PlayerBattleStats = {
+"John": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Stanly": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Logan": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "AJ": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Coach Mack": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Kevin": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Flamingo Lord": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Purple Sus": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    "Sans": {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    },
+    UserName: {
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 1
+    }
+}
 
 def EliminateUser():
     PlayerNames.remove(UserName)
