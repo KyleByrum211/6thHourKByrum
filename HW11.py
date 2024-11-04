@@ -34,8 +34,10 @@ while i < 1000:
         output += "Buzz"
     if i % 7 == 0:
         output += "Saw"
-    if i % 9 == 0:
+    if i % 2 == 0:
         output += "Chicken"
+    if i % 2 == 1:
+        output += "Joe"
     if output == "":
         print(i)
     else:

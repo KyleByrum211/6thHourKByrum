@@ -5,11 +5,11 @@
 #imports and variables
 import time
 i = 5
-j = 0
+j = 1
 k = 0
 
 #1. Create a while loop with variable i that counts down from 5 to 0 and then prints "Hello World!" at the end.
-while i > 0:
+while i >= 0:
     print(i)
     i -= 1
     time.sleep(1)
