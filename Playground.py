@@ -12,6 +12,7 @@ Item = None
 Caps = 0
 Hiding = False
 InBattle = False
+fight = False
 
 PlayerValues = {
     #In Friendliness, 0 is the lowest, 100 is the highest, 50 is neutral
@@ -86,65 +87,65 @@ maxPlayers = len(PlayerNames)
 input("Press enter to continue. ")
 
 PlayerBattleStats = {
-"John": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+    "John": {
+        "Strength": 7,
+        "Defense": 3,
+        "Health": 11,
+        "Magic": 0
     },
     "Stanly": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 6,
+        "Defense": 2,
+        "Health": 10,
+        "Magic": 5
     },
     "Logan": {
         "Strength": 1,
         "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Health": 8,
+        "Magic": 0
     },
     "AJ": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 8,
+        "Defense": 4,
+        "Health": 10,
+        "Magic": 0
     },
     "Coach Mack": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 4,
+        "Defense": 6,
+        "Health": 15,
+        "Magic": 3
     },
     "Kevin": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 2,
+        "Defense": 2,
+        "Health": 10,
+        "Magic": 2
     },
     "Flamingo Lord": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 10,
+        "Defense": 10,
+        "Health": 20,
+        "Magic": 8
     },
     "Purple Sus": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 0,
+        "Defense": 8,
+        "Health": 10,
+        "Magic": 0
     },
     "Sans": {
         "Strength": 1,
         "Defense": 1,
         "Health": 1,
-        "Magic": 1
+        "Magic": 20
     },
     UserName: {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 1
+        "Strength": 5,
+        "Defense": 5,
+        "Health": 10,
+        "Magic": 3
     }
 }
 
@@ -159,10 +160,8 @@ SelectedChance = 1 / maxPlayers
 
 #Create a loop for the function
 while True:
-    #Pick a player and remove them from the list
-
     #PICK A random number and test to see if it's a safe round where the player can search for Caps or go to the shop or ect...
-    if random.random() > 0.85:
+    if random.random() > 0.85 or fight:
         print("\nNo one was selected, it is a safe round.")
         while True:
             print(f"You have {Caps} bottle-caps.")
@@ -258,13 +257,16 @@ while True:
                     else:
                         print("You don't have enough Caps to afford that.")
                 elif newItem.lower() == "revive":
-                    if Caps >= 3:
-                        print("You successfully bought a revive.")
-                        Caps -= 3
-                        Item = "Revive"
-                        break
+                    if fight:
+                        print("You cannot purchase a revive at this time.")
                     else:
-                        print("You don't have enough Caps to afford that.")
+                        if Caps >= 3:
+                            print("You successfully bought a revive.")
+                            Caps -= 3
+                            Item = "Revive"
+                            break
+                        else:
+                            print("You don't have enough Caps to afford that.")
                 elif newItem.lower() == "button":
                     if Caps >= 200:
                         print("You successfully bought a golden button.")
@@ -489,5 +491,17 @@ while True:
                     time.sleep(1)
                     print("You used your revive to stay alive!")
                 else:
-                    EliminateUser()
-                    break
+                    print("The guards give you an option to live longer. \nThey say you can challenge an opponent to fight and if you beat them, then you can live.")
+                    fight = input("Would you like to fight to try and live another day (yes/no)? ")
+                    if fight.lower() == "yes":
+                        print("The guards will now randomly select an opponent for you to fight.\nIn the mean time, the guards let you have a safe round.")
+                        fight = True
+                    else:
+                        EliminateUser()
+                        break
+    if fight:
+        print("The guards have selected an opponent.")
+        picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
+        if picked_player == UserName:
+            continue
+        print(f"{picked_player} has been chosen.")
