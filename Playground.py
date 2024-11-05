@@ -161,11 +161,11 @@ SelectedChance = 1 / maxPlayers
 #Create a loop for the function
 while True:
     #PICK A random number and test to see if it's a safe round where the player can search for Caps or go to the shop or ect...
-    if random.random() > 0.85 or fight:
+    if random.random() > 0.85 or fight == 2:
         print("\nNo one was selected, it is a safe round.")
         while True:
             print(f"You have {Caps} bottle-caps.")
-            print("You can enter the shop, scavenge for Caps, steal items from players, or hide from the next round.")
+            print("You can enter the shop, scavenge for Caps, steal items from players, gamble, or hide from the next round.")
             doThing = input("What would you like to do? (Shop/Scavenge/Steal/Hide/Gamble): ")
             doThing = doThing.lower()
             if doThing == "gamble":
@@ -257,7 +257,7 @@ while True:
                     else:
                         print("You don't have enough Caps to afford that.")
                 elif newItem.lower() == "revive":
-                    if fight:
+                    if fight <= 2:
                         print("You cannot purchase a revive at this time.")
                     else:
                         if Caps >= 3:
@@ -495,13 +495,15 @@ while True:
                     fight = input("Would you like to fight to try and live another day (yes/no)? ")
                     if fight.lower() == "yes":
                         print("The guards will now randomly select an opponent for you to fight.\nIn the mean time, the guards let you have a safe round.")
-                        fight = True
+                        fight = 1
                     else:
                         EliminateUser()
                         break
-    if fight:
+    if fight == 2:
         print("The guards have selected an opponent.")
         picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
         if picked_player == UserName:
             continue
         print(f"{picked_player} has been chosen.")
+    elif fight == 1:
+        fight = 2
