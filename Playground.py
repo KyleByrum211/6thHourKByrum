@@ -23,47 +23,89 @@ PlayerValues = {
         "Friendliness": 80,
         "Caps": 2,
         "Generosity": 50,
+        "Strength": 7,
+        "Defense": 3,
+        "Health": 11,
+        "Magic": 0
     },
     "Stanly": {
         "Friendliness": 50,
         "Caps": 5,
-        "Generosity": 15
+        "Generosity": 15,
+        "Strength": 6,
+        "Defense": 2,
+        "Health": 10,
+        "Magic": 5
     },
     "Logan": {
         "Friendliness": 90,
         "Caps": 1,
-        "Generosity": 25
+        "Generosity": 25,
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 8,
+        "Magic": 0
     },
     "AJ": {
         "Friendliness": 70,
         "Caps": 2,
-        "Generosity": 10
+        "Generosity": 10,
+        "Strength": 8,
+        "Defense": 4,
+        "Health": 10,
+        "Magic": 0
     },
     "Coach Mack": {
         "Friendliness": 95,
         "Caps": 3,
-        "Generosity": 25
+        "Generosity": 25,
+        "Strength": 4,
+        "Defense": 6,
+        "Health": 15,
+        "Magic": 3
     },
     "Kevin": {
         "Friendliness": 15,
         "Caps": 4,
-        "Generosity": 0
+        "Generosity": 0,
+        "Strength": 2,
+        "Defense": 2,
+        "Health": 10,
+        "Magic": 21
     },
     "Flamingo Lord": {
         "Friendliness": 0,
         "Caps": 20,
-        "Generosity": 0
+        "Generosity": 0,
+        "Strength": 10,
+        "Defense": 10,
+        "Health": 20,
+        "Magic": 8
     },
     "Purple Sus": {
         "Friendliness": 100,
         "Caps": 6,
-        "Generosity": 50
+        "Generosity": 50,
+        "Strength": 0,
+        "Defense": 8,
+        "Health": 10,
+        "Magic": 0
     },
     "Sans": {
         "Friendliness": 50,
         "Caps": 0,
-        "Generosity": 100
+        "Generosity": 100,
+        "Strength": 1,
+        "Defense": 1,
+        "Health": 1,
+        "Magic": 20
     },
+    "Player": {
+        "Strength": 5,
+        "Defense": 5,
+        "Health": 10,
+        "Magic": 3
+    }
 }
 
 PlayerNames = ["John", "Stanly", "Logan", "AJ", "Coach Mack", "Kevin", "Flamingo Lord", "Purple Sus", "Sans"]
@@ -84,70 +126,8 @@ print("Your goal is to survive. There are various collectable items that can hel
 if UserName not in PlayerNames:
     PlayerNames.append(UserName)
 maxPlayers = len(PlayerNames)
+PlayerValues.update("Player", UserName)
 input("Press enter to continue. ")
-
-PlayerBattleStats = {
-    "John": {
-        "Strength": 7,
-        "Defense": 3,
-        "Health": 11,
-        "Magic": 0
-    },
-    "Stanly": {
-        "Strength": 6,
-        "Defense": 2,
-        "Health": 10,
-        "Magic": 5
-    },
-    "Logan": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 8,
-        "Magic": 0
-    },
-    "AJ": {
-        "Strength": 8,
-        "Defense": 4,
-        "Health": 10,
-        "Magic": 0
-    },
-    "Coach Mack": {
-        "Strength": 4,
-        "Defense": 6,
-        "Health": 15,
-        "Magic": 3
-    },
-    "Kevin": {
-        "Strength": 2,
-        "Defense": 2,
-        "Health": 10,
-        "Magic": 2
-    },
-    "Flamingo Lord": {
-        "Strength": 10,
-        "Defense": 10,
-        "Health": 20,
-        "Magic": 8
-    },
-    "Purple Sus": {
-        "Strength": 0,
-        "Defense": 8,
-        "Health": 10,
-        "Magic": 0
-    },
-    "Sans": {
-        "Strength": 1,
-        "Defense": 1,
-        "Health": 1,
-        "Magic": 20
-    },
-    UserName: {
-        "Strength": 5,
-        "Defense": 5,
-        "Health": 10,
-        "Magic": 3
-    }
-}
 
 def EliminateUser():
     PlayerNames.remove(UserName)
@@ -164,7 +144,7 @@ while True:
     if random.random() > 0.85 or fight == 2:
         print("\nNo one was selected, it is a safe round.")
         while True:
-            print(f"You have {Caps} bottle-caps.")
+            print(f"\nYou have {Caps} bottle-caps.")
             print("You can enter the shop, scavenge for Caps, steal items from players, gamble, or hide from the next round.")
             doThing = input("What would you like to do? (Shop/Scavenge/Steal/Hide/Gamble): ")
             doThing = doThing.lower()
@@ -241,6 +221,7 @@ while True:
                         break
                     else:
                         print("That is not a valid option.")
+                    print("")
             if doThing == "shop":
                 if "Flamingo Lord" in PlayerNames:
                     print("You walk into the shop ran by Flamingo Lord.")
@@ -356,23 +337,27 @@ while True:
                     else:
                         print("That is not a valid person.")
             elif doThing == "hide":
-                print("You chose to hide. Hiding guarantees that you aren't eliminated from the next round, but it lowers your chance to survive the one after if you get caught. \nDo note, most of your opponents don't enjoy you cheating the game like that.")
-                Hiding = True
-                time.sleep(0.5)
-                PlayerNames.remove(UserName)
-                playersThatFoundOut = [random.choice(PlayerNames), random.choice(PlayerNames), random.choice(PlayerNames)]
-                PlayerNames.append(UserName)
-                print(f"\n{playersThatFoundOut[0]}, {playersThatFoundOut[1]}, and {playersThatFoundOut[2]} found you hiding and got upset.")
-                PlayerValues[playersThatFoundOut[0]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[0]]["Friendliness"] * 0.25)
-                PlayerValues[playersThatFoundOut[1]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[1]]["Friendliness"] * 0.25)
-                PlayerValues[playersThatFoundOut[2]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[2]]["Friendliness"] * 0.25)
-                if PlayerValues[playersThatFoundOut[0]]["Friendliness"] < 0:
-                    PlayerValues[playersThatFoundOut[0]]["Friendliness"] = 0
-                if PlayerValues[playersThatFoundOut[1]]["Friendliness"] < 0:
-                    PlayerValues[playersThatFoundOut[1]]["Friendliness"] = 0
-                if PlayerValues[playersThatFoundOut[2]]["Friendliness"] < 0:
-                    PlayerValues[playersThatFoundOut[2]]["Friendliness"] = 0
-                break
+                if fight <= 2:
+                    print("You cannot hide at this time.")
+                else:
+                    print("You chose to hide. Hiding guarantees that you aren't eliminated from the next round, but it lowers your chance to survive the one after if you get caught. \nDo note, most of your opponents don't enjoy you cheating the game like that.")
+                    Hiding = True
+                    time.sleep(0.5)
+                    PlayerNames.remove(UserName)
+                    playersThatFoundOut = [random.choice(PlayerNames), random.choice(PlayerNames), random.choice(PlayerNames)]
+                    PlayerNames.append(UserName)
+                    print(f"\n{playersThatFoundOut[0]}, {playersThatFoundOut[1]}, and {playersThatFoundOut[2]} found you hiding and got upset.")
+                    PlayerValues[playersThatFoundOut[0]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[0]]["Friendliness"] * 0.25)
+                    PlayerValues[playersThatFoundOut[1]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[1]]["Friendliness"] * 0.25)
+                    PlayerValues[playersThatFoundOut[2]]["Friendliness"] -= math.floor(PlayerValues[playersThatFoundOut[2]]["Friendliness"] * 0.25)
+                    if PlayerValues[playersThatFoundOut[0]]["Friendliness"] < 0:
+                        PlayerValues[playersThatFoundOut[0]]["Friendliness"] = 0
+                    if PlayerValues[playersThatFoundOut[1]]["Friendliness"] < 0:
+                        PlayerValues[playersThatFoundOut[1]]["Friendliness"] = 0
+                    if PlayerValues[playersThatFoundOut[2]]["Friendliness"] < 0:
+                        PlayerValues[playersThatFoundOut[2]]["Friendliness"] = 0
+                    break
+
     else:
         if random.random() >= SelectedChance:
             picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
@@ -485,9 +470,9 @@ while True:
             if not Hiding:
                 print("\nPicking player...")
                 time.sleep(2)
+                print("You have been selected.")
                 if Item == "Revive":
                     Item = None
-                    print("You have been selected.")
                     time.sleep(1)
                     print("You used your revive to stay alive!")
                 else:
@@ -500,10 +485,55 @@ while True:
                         EliminateUser()
                         break
     if fight == 2:
-        print("The guards have selected an opponent.")
         picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
-        if picked_player == UserName:
-            continue
+        while picked_player == UserName:
+            picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
+        print("\nThe guards have selected an opponent.")
         print(f"{picked_player} has been chosen.")
+        time.sleep(1)
+        print(f"You are now going to fight {picked_player}.")
+
+        time.sleep(1)
+        InBattle = True
+        print("\nThe rules of battle are simple. You and your opponent will fight each other until one of your health is 0. \nBoth you and your opponent can attack and defend. \nAttacking deals damage based on your strength stat. Defending will double your defense for that turn but you cannot attack. \nYou can also view you or your opponents stats.")
+        while InBattle:
+            while True:
+                battleVar = input("What would you like to do? (attack/defend/stats): ")
+                battleVar = battleVar.lower()
+
+                if battleVar == "attack":
+                    print("You chose to attack.")
+                    break
+
+                elif battleVar == "defend":
+                    print("You chose to defend.")
+                    break
+
+                elif battleVar == "stats":
+                    print("You chose to view stats. Viewing stats does not end your turn.")
+                    battleVar = input(f"Who's stats would you like to look at? ({UserName}/{picked_player}): ")
+                    if battleVar == UserName:
+                        print("You chose to look at your stats.")
+                        time.sleep(1)
+                        print(PlayerBattleStats[UserName])
+                    elif battleVar == picked_player:
+                        if picked_player == "Sans":
+                            print("The easiest enemy. Can only deal 1 damage.")
+                        else:
+                            print("You chose to look at the opponents stats.")
+                            time.sleep(1)
+                            print(PlayerBattleStats[picked_player])
+                    else:
+                        print("That is not a valid option.")
+
+
+            battleVar = random.randint(1, 2)
+
+            if battleVar == 1:
+                print(f"{picked_player} chose to attack.")
+
+            elif battleVar == 2:
+                print(f"{picked_player} chose to defend.")
+
     elif fight == 1:
         fight = 2

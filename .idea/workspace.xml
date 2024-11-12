@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Adding combat to the playground">
-      <change afterPath="$PROJECT_DIR$/HW12.py" afterDir="false" />
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW12">
+      <change afterPath="$PROJECT_DIR$/HW13.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HW14.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
     </list>
@@ -55,6 +56,7 @@
     "Python.HW10.executor": "Run",
     "Python.HW11.executor": "Run",
     "Python.HW12.executor": "Run",
+    "Python.HW13.executor": "Run",
     "Python.HW2.executor": "Run",
     "Python.HW3.executor": "Run",
     "Python.HW4.executor": "Run",
@@ -466,11 +468,18 @@
       <option name="project" value="LOCAL" />
       <updated>1730835354959</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Added HW12">
+      <option name="closed" value="true" />
+      <created>1730922677356</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1730922677356</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed playground" />
     <MESSAGE value="Changed HW7" />
     <MESSAGE value="Added Gambling to the Playground" />
     <MESSAGE value="Added luck to the Playground" />
@@ -495,6 +504,7 @@
     <MESSAGE value="Added fighting stats to the playground that do nothing cause ima go play terraria" />
     <MESSAGE value="Changed HW10 to more accurately follow provided instructions and changed HW11 to say joe" />
     <MESSAGE value="Adding combat to the playground" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding combat to the playground" />
+    <MESSAGE value="Added HW12" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HW12" />
   </component>
 </project>
