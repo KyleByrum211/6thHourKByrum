@@ -100,12 +100,6 @@ PlayerValues = {
         "Health": 1,
         "Magic": 20
     },
-    "Player": {
-        "Strength": 5,
-        "Defense": 5,
-        "Health": 10,
-        "Magic": 3
-    }
 }
 
 PlayerNames = ["John", "Stanly", "Logan", "AJ", "Coach Mack", "Kevin", "Flamingo Lord", "Purple Sus", "Sans"]
@@ -120,13 +114,17 @@ print(f"You have {Luck} luck.")
 #Make an item the player can collect that lowers their chance of being chosen
 
 #Add the user to the game
-UserName = input("Please provide your name: ")
+while True:
+    UserName = input("Please provide your name: ")
+    if UserName not in PlayerNames:
+        PlayerNames.append(UserName)
+        break
+    else:
+        print("Please don't try to be another character. Pick a different name please.")
 print(f"Hello {UserName}! Welcome to my playground.")
 print("Your goal is to survive. There are various collectable items that can help you in your journey to victory.")
-if UserName not in PlayerNames:
-    PlayerNames.append(UserName)
 maxPlayers = len(PlayerNames)
-PlayerValues.update("Player", UserName)
+PlayerValues[UserName] = {"Strength": 5, "Defense": 5, "Health": 10, "Magic": 3}
 input("Press enter to continue. ")
 
 def EliminateUser():
@@ -141,7 +139,7 @@ SelectedChance = 1 / maxPlayers
 #Create a loop for the function
 while True:
     #PICK A random number and test to see if it's a safe round where the player can search for Caps or go to the shop or ect...
-    if random.random() > 0.85 or fight == 2:
+    if random.random() > 0.9 or fight == 2:
         print("\nNo one was selected, it is a safe round.")
         while True:
             print(f"\nYou have {Caps} bottle-caps.")
@@ -515,14 +513,25 @@ while True:
                     if battleVar == UserName:
                         print("You chose to look at your stats.")
                         time.sleep(1)
-                        print(PlayerBattleStats[UserName])
+                        stats = ""
+                        for value in PlayerValues[UserName]:
+                            stats += f"{str(PlayerValues[UserName][value])}"
+                            if value != "Magic":
+                                stats += ", "
+                        print(stats)
                     elif battleVar == picked_player:
                         if picked_player == "Sans":
                             print("The easiest enemy. Can only deal 1 damage.")
                         else:
                             print("You chose to look at the opponents stats.")
                             time.sleep(1)
-                            print(PlayerBattleStats[picked_player])
+                            stats = ""
+                            for value in PlayerValues[picked_player]:
+                                if value != "Friendliness" and value != "Caps" and value != "Generosity":
+                                    stats += f"{str(PlayerValues[picked_player][value])}"
+                                    if value != "Magic":
+                                        stats += ", "
+                            print(stats)
                     else:
                         print("That is not a valid option.")
 

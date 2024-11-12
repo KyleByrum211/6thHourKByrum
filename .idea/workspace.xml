@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW12">
-      <change afterPath="$PROJECT_DIR$/HW13.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HW14.py" afterDir="false" />
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW13 and HW14 as well as some playground changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
     </list>
@@ -57,6 +55,7 @@
     "Python.HW11.executor": "Run",
     "Python.HW12.executor": "Run",
     "Python.HW13.executor": "Run",
+    "Python.HW14.executor": "Run",
     "Python.HW2.executor": "Run",
     "Python.HW3.executor": "Run",
     "Python.HW4.executor": "Run",
@@ -476,11 +475,18 @@
       <option name="project" value="LOCAL" />
       <updated>1730922677356</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Added HW13 and HW14 as well as some playground changes">
+      <option name="closed" value="true" />
+      <created>1731442087049</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1731442087049</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed HW7" />
     <MESSAGE value="Added Gambling to the Playground" />
     <MESSAGE value="Added luck to the Playground" />
     <MESSAGE value="Added Scenario 3" />
@@ -505,6 +511,7 @@
     <MESSAGE value="Changed HW10 to more accurately follow provided instructions and changed HW11 to say joe" />
     <MESSAGE value="Adding combat to the playground" />
     <MESSAGE value="Added HW12" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added HW12" />
+    <MESSAGE value="Added HW13 and HW14 as well as some playground changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HW13 and HW14 as well as some playground changes" />
   </component>
 </project>
