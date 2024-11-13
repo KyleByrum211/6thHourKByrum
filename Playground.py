@@ -426,15 +426,7 @@ while True:
                         Item = None
                         if amongUs == UserName:
                             print("Why would you remove yourself?")
-                            if Rounds == 1:
-                                print("You.. had an item on round 1? Why would you use it to lose?? \nYou survived 1 round.")
-                            elif 9 > Rounds > 4:
-                                print(f"You had a pretty good run there. Not sure why you ended it. \nYou survived {Rounds} rounds.")
-                            else:
-                                if maxPlayers == 2:
-                                    print("You were in the final two and chose to lose? Like on purpose??")
-                                else:
-                                    print(f"You survived {Rounds} rounds.")
+                            EliminateUser()
                         else:
                             print(f"You successfully eliminated {amongUs}!")
                             print(f"Interestingly, {amongUs} knew you were up to something and let one of their friends hold their bottle-caps. You dont get any.")
@@ -513,28 +505,18 @@ while True:
                     if battleVar == UserName:
                         print("You chose to look at your stats.")
                         time.sleep(1)
-                        stats = ""
-                        for value in PlayerValues[UserName]:
-                            stats += f"{str(PlayerValues[UserName][value])}"
-                            if value != "Magic":
-                                stats += ", "
-                        print(stats)
+                        print(f"Your stats are: {PlayerValues[UserName]["Strength"]} strength, {PlayerValues[UserName]["Magic"]} magic, {PlayerValues[UserName]["Defense"]} defense, and {PlayerValues[UserName]["Health"]} health.")
                     elif battleVar == picked_player:
                         if picked_player == "Sans":
                             print("The easiest enemy. Can only deal 1 damage.")
                         else:
                             print("You chose to look at the opponents stats.")
                             time.sleep(1)
-                            stats = ""
-                            for value in PlayerValues[picked_player]:
-                                if value != "Friendliness" and value != "Caps" and value != "Generosity":
-                                    stats += f"{str(PlayerValues[picked_player][value])}"
-                                    if value != "Magic":
-                                        stats += ", "
-                            print(stats)
+                            print(f"{picked_player}'s stats are: {PlayerValues[picked_player]["Strength"]} strength, {PlayerValues[picked_player]["Magic"]} magic, {PlayerValues[picked_player]["Defense"]} defense, and {PlayerValues[picked_player]["Health"]} health.")
                     else:
                         print("That is not a valid option.")
-
+                else:
+                    print("That is not a valid option.")
 
             battleVar = random.randint(1, 2)
 
