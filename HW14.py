@@ -3,9 +3,9 @@
 #Assignment: HW14
 
 playerInt = None
-num = 1
 
 #1. Create a variable that asks the user for an integer and an empty integer variable.
+num = 1
 while True:
     try:
         playerInt = int(input("Please provide an integer: "))

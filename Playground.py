@@ -13,6 +13,16 @@ Caps = 0
 Hiding = False
 InBattle = False
 fight = False
+BattleDict = {
+    "Player": {
+        "Turn": "", #Attack or Defend
+        "Damage": 0
+    },
+    "Opponent": {
+        "Turn": "", #Attack or Defend
+        "Damage": 0
+    }
+}
 
 PlayerValues = {
     #In Friendliness, 0 is the lowest, 100 is the highest, 50 is neutral
@@ -493,10 +503,12 @@ while True:
 
                 if battleVar == "attack":
                     print("You chose to attack.")
+                    BattleDict["Player"]["Turn"] = "Attack"
                     break
 
                 elif battleVar == "defend":
                     print("You chose to defend.")
+                    BattleDict["Player"]["Turn"] = "Defend"
                     break
 
                 elif battleVar == "stats":
@@ -522,9 +534,49 @@ while True:
 
             if battleVar == 1:
                 print(f"{picked_player} chose to attack.")
+                BattleDict["Opponent"]["Turn"] = "Attack"
 
             elif battleVar == 2:
                 print(f"{picked_player} chose to defend.")
+                BattleDict["Opponent"]["Turn"] = "Defend"
+
+
+            if BattleDict["Player"]["Turn"] == "Attack":
+                BattleDict["Player"]["Damage"] = PlayerValues[UserName]["Strength"]
+                if BattleDict["Opponent"]["Turn"] == "Defend":
+                    BattleDict["Player"]["Damage"] = math.ceil(BattleDict["Player"]["Damage"] / 2)
+
+                print(f"You attack for {BattleDict["Player"]["Damage"]}")
+
+                PlayerValues[picked_player]["Health"] -= BattleDict["Player"]["Damage"]
+                BattleDict["Player"]["Damage"] = 0
+
+                print(f"{picked_player} is now at {PlayerValues[picked_player]["Health"]}!")
+
+            if PlayerValues[picked_player]["Health"] <= 0:
+                PlayerValues[picked_player]["Health"] = 0
+                print(f"{picked_player} has died, you won!")
+                break
+
+            if BattleDict["Opponent"]["Turn"] == "Attack":
+                BattleDict["Opponent"]["Damage"] = PlayerValues[picked_player]["Strength"]
+                if BattleDict["Player"]["Turn"] == "Defend":
+                    BattleDict["Opponent"]["Damage"] = math.ceil(BattleDict["Opponent"]["Damage"] / 2)
+
+                print(f"{picked_player} attacks for {BattleDict["Opponent"]["Damage"]}!")
+
+                PlayerValues[UserName]["Health"] -= BattleDict["Opponent"]["Damage"]
+                BattleDict["Opponent"]["Damage"] = 0
+
+                print(f"{UserName} is now at {PlayerValues[UserName]["Health"]}!")
+
+            if PlayerValues[UserName]["Health"] <= 0:
+                PlayerValues[UserName]["Health"] = 0
+                print(f"{UserName} has died, you lost..")
+                fight = "Lost"
+                break
+        if fight == "Lost":
+            EliminateUser()
 
     elif fight == 1:
         fight = 2
