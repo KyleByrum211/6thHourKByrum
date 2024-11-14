@@ -497,6 +497,7 @@ while True:
         InBattle = True
         print("\nThe rules of battle are simple. You and your opponent will fight each other until one of your health is 0. \nBoth you and your opponent can attack and defend. \nAttacking deals damage based on your strength stat. Defending will double your defense for that turn but you cannot attack. \nYou can also view you or your opponents stats.")
         while InBattle:
+            print("\n")
             while True:
                 battleVar = input("What would you like to do? (attack/defend/stats): ")
                 battleVar = battleVar.lower()
@@ -550,12 +551,15 @@ while True:
 
                 PlayerValues[picked_player]["Health"] -= BattleDict["Player"]["Damage"]
                 BattleDict["Player"]["Damage"] = 0
+                if PlayerValues[picked_player]["Health"] <= 0:
+                    PlayerValues[picked_player]["Health"] = 0
 
                 print(f"{picked_player} is now at {PlayerValues[picked_player]["Health"]}!")
 
             if PlayerValues[picked_player]["Health"] <= 0:
                 PlayerValues[picked_player]["Health"] = 0
                 print(f"{picked_player} has died, you won!")
+                PlayerNames.remove(picked_player)
                 break
 
             if BattleDict["Opponent"]["Turn"] == "Attack":
@@ -567,6 +571,8 @@ while True:
 
                 PlayerValues[UserName]["Health"] -= BattleDict["Opponent"]["Damage"]
                 BattleDict["Opponent"]["Damage"] = 0
+                if PlayerValues[UserName]["Health"] <= 0:
+                    PlayerValues[UserName]["Health"] = 0
 
                 print(f"{UserName} is now at {PlayerValues[UserName]["Health"]}!")
 
