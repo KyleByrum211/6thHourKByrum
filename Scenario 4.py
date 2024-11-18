@@ -31,19 +31,16 @@ print(f"The theme of this game is: {themeList[random.randint(0, 6)]}")
 print(f"The model walks onto the stage, {stageMessages[model - 1]}")
 
 for i in range(1, players + 1):
-    if i == 1:
-        while True:
-            try:
-                userRating = int(input("What rating would you like to give the model? Pick any number between 1 and 5: "))
-                if userRating > 5 or userRating < 1:
-                    userRating = int("g")
-                else:
-                    rating += userRating
-                    break
-            except ValueError:
-                print("That is not a valid rating.\n")
-    else:
-        rating += random.randint(model, model + 1)
+    while True:
+        try:
+            userRating = int(input(f"What rating would player {i} like to give the model? Pick any number between 1 and 5: "))
+            if userRating > 5 or userRating < 1:
+                userRating = int("g")
+            else:
+                rating += userRating
+                break
+        except ValueError:
+            print("That is not a valid rating.\n")
 else:
     rating /= players
     rating = round(rating, 2)
