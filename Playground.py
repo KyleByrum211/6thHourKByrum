@@ -10,9 +10,10 @@ import math
 Rounds = 0
 Item = None
 Caps = 0
+BattleTickets = 0
 Hiding = False
 InBattle = False
-fight = False
+fight = 0
 BattleDict = {
     "Player": {
         "Turn": "", #Attack or Defend
@@ -235,8 +236,8 @@ while True:
                     print("You walk into the shop ran by Flamingo Lord.")
                 else:
                     print("You walk into the shop that Flamingo Lord used to run.")
-                print(f"You can buy some items from here if you have enough bottle-caps. Currently, you have {Caps} bottle-caps.\n A disliking will cost 2 bottle-caps, revive costs 3, and a Golden Button costs 200.")
-                newItem = input("What would you like to buy? (Disliking/Revive/Button): ")
+                print(f"You can buy some items from here if you have enough bottle-caps. Currently, you have {Caps} bottle-caps.\n A disliking will cost 2 bottle-caps, revive costs 3, a Battle Ticket costs 4, and a Golden Button costs 200.")
+                newItem = input("What would you like to buy? (Disliking/Revive/Ticket/Button): ")
                 if newItem.lower() == "disliking":
                     if Caps >= 2:
                         print("You successfully bought a disliking.")
@@ -246,7 +247,7 @@ while True:
                     else:
                         print("You don't have enough Caps to afford that.")
                 elif newItem.lower() == "revive":
-                    if fight <= 2:
+                    if fight > 0:
                         print("You cannot purchase a revive at this time.")
                     else:
                         if Caps >= 3:
@@ -256,6 +257,14 @@ while True:
                             break
                         else:
                             print("You don't have enough Caps to afford that.")
+                elif newItem.lower() == "ticket":
+                    if Caps >= 4:
+                        print("You successfully bought a battle ticket. These don't take up your item slot and they allow you to fight if you're picked.")
+                        Caps -= 4
+                        BattleTickets += 1
+                        break
+                    else:
+                        print("You don't have enough Caps to afford that.")
                 elif newItem.lower() == "button":
                     if Caps >= 200:
                         print("You successfully bought a golden button.")
@@ -380,12 +389,15 @@ while True:
                 moneyReceiveMessages = [f"{picked_player} dropped a bottle-cap you snatched before anyone else could.", "A skeleton just appeared out of nowhere and handed you a bottle-cap.", "A boat load of bottle-caps fell from the sky. Sadly, most of them fell into the nearby drain and you only managed to collect 1.", "The fans watching this donated a single bottle-cap to you specifically."]
                 print(random.choice(moneyReceiveMessages))
             if random.randint(1, 5) == 1:
-                chance = random.randint(1, 3)
+                chance = random.randint(1, 4)
                 newItem = None
                 if chance == 1:
                     newItem = "Revive"
                 elif chance == 2:
                     newItem = "Disliking"
+                elif chance == 4:
+                    newItem = "Battle Ticket"
+                    BattleTickets += 1
                 itemReceiveMessages = [
                     {"Message": f"{picked_player} dropped a {newItem} that you nabbed.", "Friendliness": True},
                     {"Message": f"You found a {newItem} laying on the ground.", "Friendliness": True},
@@ -410,17 +422,23 @@ while True:
                     if Item is not None:
                         print(f"You tripped and lost your {Item}.")
                         Item = None
-                if Item is None:
-                    Item = newItem
-                else:
-                    if newItem == Item:
-                        print("You already have that item.")
+                elif chance == 4:
+                    print(usedMessage["Message"])
+                    print("You can use these to fight instead of being eliminated, and they dont take up your item slot!")
+                    newItem = None
+                if newItem is not None:
+                    if Item is None:
+                        Item = newItem
+                        newItem = None
                     else:
-                        takeItem = input(f"You already have a {Item}. Would you like to replace it with a {newItem}? (type 'yes' to accept): ")
-                        if takeItem.lower() == "yes":
-                            Item = newItem
-                            newItem = None
-                            print(f"You successfully got the {Item}")
+                        if newItem == Item:
+                            print("You already have that item.")
+                        else:
+                            takeItem = input(f"You already have a {Item}. Would you like to replace it with a {newItem}? (type 'yes' to accept): ")
+                            if takeItem.lower() == "yes":
+                                Item = newItem
+                                newItem = None
+                                print(f"You successfully got the {Item}")
             Rounds += 1
             if Item == "Disliking":
                 useItem = input(f"Do you wish to use your {Item}? (type 'yes' to accept): ")
@@ -475,15 +493,19 @@ while True:
                     Item = None
                     time.sleep(1)
                     print("You used your revive to stay alive!")
-                else:
+                elif BattleTickets >= 1:
                     print("The guards give you an option to live longer. \nThey say you can challenge an opponent to fight and if you beat them, then you can live.")
                     fight = input("Would you like to fight to try and live another day (yes/no)? ")
                     if fight.lower() == "yes":
                         print("The guards will now randomly select an opponent for you to fight.\nIn the mean time, the guards let you have a safe round.")
                         fight = 1
+                        BattleTickets -= 1
                     else:
                         EliminateUser()
                         break
+                else:
+                    EliminateUser()
+                    break
     if fight == 2:
         picked_player = PlayerNames[random.randint(1, maxPlayers) - 1]
         while picked_player == UserName:
@@ -554,7 +576,7 @@ while True:
                 if PlayerValues[picked_player]["Health"] <= 0:
                     PlayerValues[picked_player]["Health"] = 0
 
-                print(f"{picked_player} is now at {PlayerValues[picked_player]["Health"]}!")
+                print(f"{picked_player} is now at {PlayerValues[picked_player]["Health"]} health!")
 
             if PlayerValues[picked_player]["Health"] <= 0:
                 PlayerValues[picked_player]["Health"] = 0
@@ -574,7 +596,7 @@ while True:
                 if PlayerValues[UserName]["Health"] <= 0:
                     PlayerValues[UserName]["Health"] = 0
 
-                print(f"{UserName} is now at {PlayerValues[UserName]["Health"]}!")
+                print(f"{UserName} is now at {PlayerValues[UserName]["Health"]} health!")
 
             if PlayerValues[UserName]["Health"] <= 0:
                 PlayerValues[UserName]["Health"] = 0
@@ -583,6 +605,8 @@ while True:
                 break
         if fight == "Lost":
             EliminateUser()
+        else:
+            fight = 0
 
     elif fight == 1:
         fight = 2
