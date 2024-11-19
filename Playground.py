@@ -494,7 +494,7 @@ while True:
                     time.sleep(1)
                     print("You used your revive to stay alive!")
                 elif BattleTickets >= 1:
-                    print("The guards give you an option to live longer. \nThey say you can challenge an opponent to fight and if you beat them, then you can live.")
+                    print("The guards notice you have a battle ticket. They mention if you have one you can redeem it to fight and try to win.")
                     fight = input("Would you like to fight to try and live another day (yes/no)? ")
                     if fight.lower() == "yes":
                         print("The guards will now randomly select an opponent for you to fight.\nIn the mean time, the guards let you have a safe round.")

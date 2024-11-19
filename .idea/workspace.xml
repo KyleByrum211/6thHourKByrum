@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="More stuff to do with the battle system">
-      <change afterPath="$PROJECT_DIR$/Scenario 4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added battle tickets to the playground" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,30 +88,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Changed HW3 to say HW3 and not HW2">
-      <option name="closed" value="true" />
-      <created>1725476240024</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1725476240024</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added the Playground">
-      <option name="closed" value="true" />
-      <created>1725649696736</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1725649696736</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added the Playground">
-      <option name="closed" value="true" />
-      <created>1726249465614</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1726249465614</updated>
     </task>
     <task id="LOCAL-00008" summary="Added HW4">
       <option name="closed" value="true" />
@@ -484,13 +457,34 @@
       <option name="project" value="LOCAL" />
       <updated>1731613554625</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Added Scenario 4">
+      <option name="closed" value="true" />
+      <created>1731959686712</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1731959686713</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Changed Scenario 4 so that it follows instructions correctly">
+      <option name="closed" value="true" />
+      <created>1731960735343</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1731960735343</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Added battle tickets to the playground">
+      <option name="closed" value="true" />
+      <created>1731960912579</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1731960912579</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added luck to the Playground" />
-    <MESSAGE value="Added Scenario 3" />
-    <MESSAGE value="Changed Scenario 3 to have a simple mode" />
     <MESSAGE value="Changed Scenario 3 to be nicer looking" />
     <MESSAGE value="Changed Scenario 3 to use AtkMod correctly." />
     <MESSAGE value="Changed Scenario 3 damage values." />
@@ -513,6 +507,9 @@
     <MESSAGE value="Added HW12" />
     <MESSAGE value="Added HW13 and HW14 as well as some playground changes" />
     <MESSAGE value="More stuff to do with the battle system" />
-    <option name="LAST_COMMIT_MESSAGE" value="More stuff to do with the battle system" />
+    <MESSAGE value="Added Scenario 4" />
+    <MESSAGE value="Changed Scenario 4 so that it follows instructions correctly" />
+    <MESSAGE value="Added battle tickets to the playground" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added battle tickets to the playground" />
   </component>
 </project>
