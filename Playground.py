@@ -17,7 +17,9 @@ fight = 0
 BattleDict = {
     "Player": {
         "Turn": "", #Attack or Defend
-        "Damage": 0
+        "Damage": 0,
+        "Ticket": False,
+        "Points": 0
     },
     "Opponent": {
         "Turn": "", #Attack or Defend
@@ -126,6 +128,7 @@ print(f"You have {Luck} luck.")
 
 #Add the user to the game
 while True:
+    print("You will now be asked for your name. It is preferable you do not put anything unnecessarily long or complicated so that you can type it later if you need to.\n Also, try not to end it in a space, as it will probably look bad.")
     UserName = input("Please provide your name: ")
     if UserName not in PlayerNames:
         PlayerNames.append(UserName)
@@ -521,7 +524,7 @@ while True:
         while InBattle:
             print("\n")
             while True:
-                battleVar = input("What would you like to do? (attack/defend/stats): ")
+                battleVar = input("What would you like to do? (attack/defend/stats/ticket): ")
                 battleVar = battleVar.lower()
 
                 if battleVar == "attack":
@@ -550,6 +553,32 @@ while True:
                             print(f"{picked_player}'s stats are: {PlayerValues[picked_player]["Strength"]} strength, {PlayerValues[picked_player]["Magic"]} magic, {PlayerValues[picked_player]["Defense"]} defense, and {PlayerValues[picked_player]["Health"]} health.")
                     else:
                         print("That is not a valid option.")
+                elif battleVar == "ticket":
+                    battleVar = input("Would you like to use a battle ticket to boost your stats? You can only do this once per battle. (yes/no): ")
+                    if battleVar.lower() == "yes":
+                        if not BattleDict["Player"]["Ticket"]:
+                            if BattleTickets >= 1:
+                                print("You have redeemed 5 points with the battle ticket, spend them wisely.")
+                                BattleTickets -= 1
+                                BattleDict["Player"]["Ticket"] = True
+                                BattleDict["Player"]["Points"] += 5
+                                stats = ""
+                                for stat in PlayerValues[UserName].keys():
+                                    stats += f" {str(stat)},"
+                                print(f"The stats you can upgrade are:{stats}.")
+                                stats = ""
+                                while BattleDict["Player"]["Points"] > 0:
+                                    battleVar = input("What stat would you like to upgrade? ")
+                                    if battleVar in PlayerValues[UserName]:
+                                        print(f"You chose to upgrade {battleVar}.")
+                                    else:
+                                        print("You cannot upgrade that.")
+                            else:
+                                print("You do not have enough battle tickets.")
+                        else:
+                            print("You already used a battle ticket this battle.")
+                    else:
+                        print("You did not use a battle ticket.")
                 else:
                     print("That is not a valid option.")
 
@@ -607,6 +636,7 @@ while True:
             EliminateUser()
         else:
             fight = 0
+        BattleDict["Player"]["Ticket"] = False
 
     elif fight == 1:
         fight = 2
