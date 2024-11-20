@@ -554,7 +554,8 @@ while True:
                     else:
                         print("That is not a valid option.")
                 elif battleVar == "ticket":
-                    battleVar = input("Would you like to use a battle ticket to boost your stats? You can only do this once per battle. (yes/no): ")
+                    battleVar = input(
+                        "Would you like to use a battle ticket to boost your stats? You can only do this once per battle. (yes/no): ")
                     if battleVar.lower() == "yes":
                         if not BattleDict["Player"]["Ticket"]:
                             if BattleTickets >= 1:
@@ -570,7 +571,23 @@ while True:
                                 while BattleDict["Player"]["Points"] > 0:
                                     battleVar = input("What stat would you like to upgrade? ")
                                     if battleVar in PlayerValues[UserName]:
-                                        print(f"You chose to upgrade {battleVar}.")
+                                        while BattleDict["Player"]["Points"] > 0:
+                                            try:
+                                                upgrading = int(input(f"How many points would you like to put into {battleVar}? You have {BattleDict["Player"]["Points"]} points: "))
+                                            except ValueError:
+                                                print("That is not a valid amount of points.")
+                                                continue
+                                            if BattleDict["Player"]["Points"] >= upgrading >= 1:
+                                                PlayerValues[UserName][battleVar] += math.floor(upgrading * 2)
+                                                BattleDict["Player"]["Points"] -= upgrading
+                                                print( f"Your {battleVar} is now at {PlayerValues[UserName][battleVar]}!")
+                                                break
+                                            elif upgrading > BattleDict["Player"]["Points"]:
+                                                print("You don't have enough points for that.")
+                                            elif upgrading == 0:
+                                                break
+                                            elif upgrading < 0:
+                                                print("You cannot spend negative points.")
                                     else:
                                         print("You cannot upgrade that.")
                             else:
