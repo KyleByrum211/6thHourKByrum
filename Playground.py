@@ -18,8 +18,12 @@ BattleDict = {
     "Player": {
         "Turn": "", #Attack or Defend
         "Damage": 0,
-        "Ticket": False,
-        "Points": 0
+        "Points": 0,
+        "Ticket": [True, "ticket"],
+        "CanAttack": [True, "attack"],
+        "CanDefend": [True, "defend"],
+        "CanUseMagic": [False, "magic"],
+        "CanSeeStats": [True, "stats"]
     },
     "Opponent": {
         "Turn": "", #Attack or Defend
@@ -524,7 +528,12 @@ while True:
         while InBattle:
             print("\n")
             while True:
-                battleVar = input("What would you like to do? (attack/defend/stats/ticket): ")
+                availableActions = []
+                for key, value in BattleDict["Player"].items():
+                    if isinstance(value, list) and value[0]:
+                        availableActions.append(value[1])
+                availableActions = "/".join(availableActions)
+                battleVar = input(f"What would you like to do? ({availableActions}): ")
                 battleVar = battleVar.lower()
 
                 if battleVar == "attack":
@@ -536,6 +545,12 @@ while True:
                     print("You chose to defend.")
                     BattleDict["Player"]["Turn"] = "Defend"
                     break
+
+                elif battleVar == "magic":
+                    if not BattleDict["Player"]["CanUseMagic"][0]:
+                        print("You can't use magic yet, you must get a higher magic level.")
+                    else:
+                        print("You chose to use magic.")
 
                 elif battleVar == "stats":
                     print("You chose to view stats. Viewing stats does not end your turn.")
@@ -557,11 +572,11 @@ while True:
                     battleVar = input(
                         "Would you like to use a battle ticket to boost your stats? You can only do this once per battle. (yes/no): ")
                     if battleVar.lower() == "yes":
-                        if not BattleDict["Player"]["Ticket"]:
+                        if BattleDict["Player"]["Ticket"][0]:
                             if BattleTickets >= 1:
                                 print("You have redeemed 5 points with the battle ticket, spend them wisely.")
                                 BattleTickets -= 1
-                                BattleDict["Player"]["Ticket"] = True
+                                BattleDict["Player"]["Ticket"][0] = False
                                 BattleDict["Player"]["Points"] += 5
                                 stats = ""
                                 for stat in PlayerValues[UserName].keys():
@@ -653,7 +668,7 @@ while True:
             EliminateUser()
         else:
             fight = 0
-        BattleDict["Player"]["Ticket"] = False
+        BattleDict["Player"]["Ticket"][0] = True
 
     elif fight == 1:
         fight = 2
