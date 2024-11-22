@@ -551,6 +551,7 @@ while True:
                         print("You can't use magic yet, you must get a higher magic level.")
                     else:
                         print("You chose to use magic.")
+                        BattleDict["Player"]["Turn"] = "Magic"
 
                 elif battleVar == "stats":
                     print("You chose to view stats. Viewing stats does not end your turn.")
@@ -614,7 +615,10 @@ while True:
                 else:
                     print("That is not a valid option.")
 
-            battleVar = random.randint(1, 2)
+            if PlayerValues[picked_player]["Magic"] > 5:
+                battleVar = random.randint(1, 3)
+            else:
+                battleVar = random.randint(1, 2)
 
             if battleVar == 1:
                 print(f"{picked_player} chose to attack.")
@@ -623,6 +627,11 @@ while True:
             elif battleVar == 2:
                 print(f"{picked_player} chose to defend.")
                 BattleDict["Opponent"]["Turn"] = "Defend"
+
+            elif battleVar == 3:
+                print(f"{picked_player} chose to use magic.")
+                BattleDict["Opponent"]["Turn"] = "Magic"
+
 
 
             if BattleDict["Player"]["Turn"] == "Attack":
