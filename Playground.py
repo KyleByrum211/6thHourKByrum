@@ -85,10 +85,10 @@ PlayerValues = {
         "Friendliness": 15,
         "Caps": 4,
         "Generosity": 0,
-        "Strength": 2,
+        "Strength": 5,
         "Defense": 2,
         "Health": 10,
-        "Magic": 21
+        "Magic": 18
     },
     "Flamingo Lord": {
         "Friendliness": 0,
@@ -117,9 +117,18 @@ PlayerValues = {
         "Health": 1,
         "Magic": 20
     },
+    "Ivan": {
+        "Friendliness": 60,
+        "Caps": 2,
+        "Generosity": 40,
+        "Strength": 6,
+        "Defense": 4,
+        "Health": 11,
+        "Magic": 0
+    }
 }
 
-PlayerNames = ["John", "Stanly", "Logan", "AJ", "Coach Mack", "Kevin", "Flamingo Lord", "Purple Sus", "Sans"]
+PlayerNames = ["John", "Stanly", "Logan", "AJ", "Coach Mack", "Kevin", "Flamingo Lord", "Purple Sus", "Sans", "Ivan"]
 LuckList = [random.randint(1, 6), random.randint(1, 6), random.randint(1, 6), random.randint(1, 6)]
 LuckList.sort()
 LuckList.remove(LuckList[0])
@@ -151,6 +160,7 @@ def EliminateUser():
         print("You have been selected. You survived 1 round.")
     else:
         print(f"You have been selected. You survived {Rounds} rounds.")
+    exit()
 
 SelectedChance = 1 / maxPlayers
 

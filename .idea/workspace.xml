@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Adding magic to the battle system">
-      <change afterPath="$PROJECT_DIR$/Scenario 5.py" afterDir="false" />
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Scenario 5 Final">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,14 +94,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Added HW6">
-      <option name="closed" value="true" />
-      <created>1727721706180</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1727721706180</updated>
     </task>
     <task id="LOCAL-00014" summary="Changed HW6 to be slower">
       <option name="closed" value="true" />
@@ -487,11 +479,18 @@
       <option name="project" value="LOCAL" />
       <updated>1732303742313</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Scenario 5 Final">
+      <option name="closed" value="true" />
+      <created>1733861021315</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1733861021315</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed Scenario 3 damage values." />
     <MESSAGE value="Added healing to certain classes." />
     <MESSAGE value="Made the team wipe message far better." />
     <MESSAGE value="Added an elasped battle time feature to show how long the battle took." />
@@ -516,6 +515,7 @@
     <MESSAGE value="Added battle tickets to the playground" />
     <MESSAGE value="Added ability to upgrade stats during battle with extra battle tickets." />
     <MESSAGE value="Adding magic to the battle system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding magic to the battle system" />
+    <MESSAGE value="Scenario 5 Final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scenario 5 Final" />
   </component>
 </project>
