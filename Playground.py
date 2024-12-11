@@ -141,7 +141,7 @@ print(f"You have {Luck} luck.")
 
 #Add the user to the game
 while True:
-    print("You will now be asked for your name. It is preferable you do not put anything unnecessarily long or complicated so that you can type it later if you need to.\n Also, try not to end it in a space, as it will probably look bad.")
+    print("You will now be asked for your name. It is preferable you do not put anything unnecessarily long or complicated so that you can type it later if you need to. \nAlso, try not to end or begin your name with a space, as it will probably look bad.")
     UserName = input("Please provide your name: ")
     if UserName not in PlayerNames:
         PlayerNames.append(UserName)

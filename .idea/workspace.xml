@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Scenario 5 Final">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playground.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground.py" afterDir="false" />
-    </list>
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added Ivan to the playground" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,14 +91,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Changed HW6 to be slower">
-      <option name="closed" value="true" />
-      <created>1727722399842</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1727722399842</updated>
     </task>
     <task id="LOCAL-00015" summary="Fixed some bugs in the Playground and added some neat features.">
       <option name="closed" value="true" />
@@ -487,11 +476,18 @@
       <option name="project" value="LOCAL" />
       <updated>1733861021315</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Added Ivan to the playground">
+      <option name="closed" value="true" />
+      <created>1733863535704</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1733863535704</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added healing to certain classes." />
     <MESSAGE value="Made the team wipe message far better." />
     <MESSAGE value="Added an elasped battle time feature to show how long the battle took." />
     <MESSAGE value="Edited age calc to be funnier" />
@@ -516,6 +512,7 @@
     <MESSAGE value="Added ability to upgrade stats during battle with extra battle tickets." />
     <MESSAGE value="Adding magic to the battle system" />
     <MESSAGE value="Scenario 5 Final" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scenario 5 Final" />
+    <MESSAGE value="Added Ivan to the playground" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Ivan to the playground" />
   </component>
 </project>
