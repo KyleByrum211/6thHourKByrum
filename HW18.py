@@ -33,3 +33,4 @@ def BeanLoop():
 
 #5. Call the #3 function at the bottom.
 PickBean()
+HelloWorld()
