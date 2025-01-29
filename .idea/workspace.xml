@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Changed Playground 2" />
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW17">
+      <change afterPath="$PROJECT_DIR$/HW18.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +58,8 @@
     "Python.HW14.executor": "Run",
     "Python.HW15.executor": "Run",
     "Python.HW16.executor": "Run",
+    "Python.HW17.executor": "Run",
+    "Python.HW18.executor": "Run",
     "Python.HW2.executor": "Run",
     "Python.HW3.executor": "Run",
     "Python.HW4.executor": "Run",
@@ -95,14 +100,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Added Gambling to the Playground">
-      <option name="closed" value="true" />
-      <created>1728414409183</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1728414409183</updated>
     </task>
     <task id="LOCAL-00021" summary="Added luck to the Playground">
       <option name="closed" value="true" />
@@ -488,11 +485,18 @@
       <option name="project" value="LOCAL" />
       <updated>1736885877988</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Added HW17">
+      <option name="closed" value="true" />
+      <created>1738179066766</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1738179066766</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added HW9" />
     <MESSAGE value="Edited HW9 so it is american" />
     <MESSAGE value="Added HW10" />
     <MESSAGE value="Added HW11" />
@@ -517,6 +521,7 @@
     <MESSAGE value="Changed playground 2" />
     <MESSAGE value="Added HW15 and HW16" />
     <MESSAGE value="Changed Playground 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Playground 2" />
+    <MESSAGE value="Added HW17" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HW17" />
   </component>
 </project>
