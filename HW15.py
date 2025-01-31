@@ -24,11 +24,4 @@ def NumberLoop(Num, i):
 #I highly doubt this is what you wanted when you requested that, but it was the only thing I could think of.
 
 #5. Call all the functions created in 1 - 4 with relevant arguments.
-WhatsUpGang()
-
-AverageNum(int(input("Please input a number: ")), int(input("Please input another number: ")), int(input("Please input the last number: ")))
-
-AnimalFunction("Monkey", "Cat", "Dog", "Flamingo", input("Please provide an animal: "))
-#Yes I am aware the input has nothing to do with what the function does. It is there for the funny.
-
-NumberLoop(int(input("Please provide a number: ")), 0)
+#Deleted per request of HW19.
