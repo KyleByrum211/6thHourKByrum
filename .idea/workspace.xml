@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Changed HW18">
-      <change afterPath="$PROJECT_DIR$/Monthy Python.py" afterDir="false" />
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW19">
+      <change afterPath="$PROJECT_DIR$/Scenario 6.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,6 +60,7 @@
     "Python.HW16.executor": "Run",
     "Python.HW17.executor": "Run",
     "Python.HW18.executor": "Run",
+    "Python.HW19.executor": "Run",
     "Python.HW2.executor": "Run",
     "Python.HW3.executor": "Run",
     "Python.HW4.executor": "Run",
@@ -78,6 +79,7 @@
     "Python.Scenario 3.executor": "Run",
     "Python.Scenario 4.executor": "Run",
     "Python.Scenario 5.executor": "Run",
+    "Python.Scenario 6.executor": "Run",
     "Python.Testing.executor": "Run",
     "Python.herh5rewhewr.executor": "Run",
     "Python.jrhenteh.executor": "Run",
@@ -101,14 +103,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Changed Scenario 3 to have a simple mode">
-      <option name="closed" value="true" />
-      <created>1728586722418</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1728586722418</updated>
     </task>
     <task id="LOCAL-00024" summary="Changed Scenario 3 to be nicer looking">
       <option name="closed" value="true" />
@@ -494,11 +488,18 @@
       <option name="project" value="LOCAL" />
       <updated>1738180150567</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Added HW19">
+      <option name="closed" value="true" />
+      <created>1738352185482</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1738352185482</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added HW11" />
     <MESSAGE value="Fixed HW10" />
     <MESSAGE value="Edited Playground gambling messages." />
     <MESSAGE value="Balanced Playground Gambling so it better represents real gambling and made hw11 cooler" />
@@ -523,6 +524,7 @@
     <MESSAGE value="Added HW17" />
     <MESSAGE value="Added HW18" />
     <MESSAGE value="Changed HW18" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed HW18" />
+    <MESSAGE value="Added HW19" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HW19" />
   </component>
 </project>
