@@ -2,6 +2,8 @@
 import random
 import math
 
+EnemyStats = []
+
 Money = 0
 PlayerStats = {
     "Health": 20,
@@ -19,7 +21,7 @@ Basic ={
     },
     "Monarch": {
         "Damage": [2, 4, 6, 8, 10],
-        "Cost": 4,
+        "Cost": 3,
         "Discard": True,
     },
     "Strike": {
@@ -84,6 +86,7 @@ while True:
         break
 
 def EnemyEncounter():
+    global EnemyStats
     EnemyStats = random.randint(1, 1)
     if EnemyStats == 1:
         EnemyStats = {
@@ -120,16 +123,42 @@ if Tutorial:
     "Strike 3": {"Damage": 2,"Cost": 1,"Discard": True,},
     "Slap": {"Damage": 1,"Cost": 0,"Discard": True,}
     }]}
-    print("A goblin has challenged you to a battle.")
+    print("A goblin has challenged you to a battle. You drew your hand.")
+    PlayerStats["Current Hand"] = random.sample(list(PlayerStats["Deck"][1]), PlayerStats["Hand Size"])
     while True:
         Action = input("What would you like to do? (Attack): ")
         if Action.lower() == "attack":
-            print("Pick a card from your hand. Your cards in your hand:")
-            PlayerStats["Current Hand"] = random.sample(list(PlayerStats["Deck"][1]), PlayerStats["Hand Size"])
-            for i in PlayerStats["Current Hand"]:
-                print(i)
+            while True:
+                print("Pick a card from your hand. The cards in your hand are:")
+                for i in PlayerStats["Current Hand"]:
+                    print(i)
+                print("You may also type leave to exit the attack sequence.")
+                Card = input("Please pick a card: ")
+                if Card.lower() == "leave":
+                    print("You closed the attack sequence.")
+                    break
+                elif Card.title() not in PlayerStats["Current Hand"]:
+                    print("That is not a valid card.")
+                else:
+                    if type(PlayerStats["Deck"][1][Card.title()]["Damage"]) is list:
+                        damages = ""
+                        for i in PlayerStats["Deck"][1][Card.title()]["Damage"]:
+                            if i == PlayerStats["Deck"][1][Card.title()]["Damage"][-1]:
+                                damages += f"or {i}"
+                            else:
+                                damages += f"{i}, "
+                        print(f"This card deals either {damages} damage. A random value out of these will be picked once the card is used.")
+                    else:
+                        print(f"This card deals {PlayerStats["Deck"][1][Card.title()]["Damage"]} damage.")
+                    print(f"This card will cost {PlayerStats["Deck"][1][Card.title()]["Cost"]} stamina to use.")
+                    if not PlayerStats["Deck"][1][Card.title()]["Discard"]:
+                        print("This card does not discard on use.")
+                    Action = input("Would you like to use this card? (Y/N): ")
+                    if Action.lower() == "y":
+                        print("You used the card.")
+                    else:
+                        print("You did not use the card.")
+                        break
 
-
-
-            break
-
+def HandleAttack():
+    pass
