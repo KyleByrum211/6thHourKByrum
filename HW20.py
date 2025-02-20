@@ -2,6 +2,8 @@
 #Class: 6th Hour
 #Assignment: HW20
 
+import random
+ListOfResponses = ["You arent very good at following tasks.", "You are a bad tester.", "Try listening a little harder."]
 
 #1. Create a try catch that tries to print variable x (which has no value), but prints "Hello World!" instead.
 try:
@@ -29,7 +31,7 @@ while True:
         print("Thank you for you're cooperation. You may stick around for the last experiment if you wish, although it does not require your participation.")
         break
     except ValueError:
-        print("The company requested a number. You arent very good at following tasks.")
+        print(f"The company requested a number. {random.choice(ListOfResponses)}")
 
 #4. Create a while loop that counts down from 5 to 0, but raises an exception when it counts below zero.
 i = 5
