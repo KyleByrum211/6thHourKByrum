@@ -26,7 +26,7 @@ while j <= 30:
 #3. Create a while loop that repeats until the user inputs the number 0.
 while k != "0":
     print("")
-    k = input("Please input the number;d/l 0: ")
+    k = input("Please input the number 0: ")
     if k != "0":
         print("That is not the number 0.")
     time.sleep(0.5)
