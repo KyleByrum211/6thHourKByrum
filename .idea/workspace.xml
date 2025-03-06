@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Changed Playground 2">
-      <change afterPath="$PROJECT_DIR$/HW22.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW22" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -109,14 +106,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Edited HW9 so it is american">
-      <option name="closed" value="true" />
-      <created>1729794880852</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1729794880852</updated>
     </task>
     <task id="LOCAL-00037" summary="Added HW10">
       <option name="closed" value="true" />
@@ -502,11 +491,18 @@
       <option name="project" value="LOCAL" />
       <updated>1741033002085</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Added HW22">
+      <option name="closed" value="true" />
+      <created>1741290539185</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1741290539185</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added HW12" />
     <MESSAGE value="Added HW13 and HW14 as well as some playground changes" />
     <MESSAGE value="More stuff to do with the battle system" />
     <MESSAGE value="Added Scenario 4" />
@@ -531,6 +527,7 @@
     <MESSAGE value="Added the Pla(i)yground" />
     <MESSAGE value="Added HW21" />
     <MESSAGE value="Changed Playground 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Playground 2" />
+    <MESSAGE value="Added HW22" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added HW22" />
   </component>
 </project>

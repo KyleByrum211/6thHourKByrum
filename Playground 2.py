@@ -14,43 +14,36 @@ PlayerStats = {
     "Current Hand": None,
     "Discarded": []
 }
-Basic ={
-    "Ace": {
-        "Damage": [1, 11],
-        "Cost": 3,
-        "Discard": True,
-    },
-    "Monarch": {
-        "Damage": [2, 4, 6, 8, 10],
-        "Cost": 3,
-        "Discard": True,
-    },
-    "Strike": {
-        "Damage": 2,
-        "Cost": 1,
-        "Discard": True,
-    },
-    "Strike 2": {
-        "Damage": 2,
-        "Cost": 1,
-        "Discard": True,
-    },
-    "Strike 3": {
-        "Damage": 2,
-        "Cost": 1,
-        "Discard": True,
-    },
-    "Strike 4": {
-        "Damage": 2,
-        "Cost": 1,
-        "Discard": True,
-    },
-    "Strike 5": {
-        "Damage": 2,
-        "Cost": 1,
-        "Discard": True,
-    }
-}
+
+class Cards:
+    def __init__(self, Name, Damage, Cost, Discard):
+        self.Name = Name
+        self.Damage = Damage
+        self.Cost = Cost
+        self.Discard = Discard
+
+    def PickDamage(self):
+        if isinstance(self.Damage, list):
+            return random.choice(self.Damage)
+        return self.Damage
+
+Ace = Cards("Ace", [1, 11], 3, True)
+Monarch = Cards("Monarch", [2, 4, 6, 8, 10], 3, True)
+Strike = Cards("Strike", 2, 1, True)
+
+class Decks:
+    def __init__(self, Name):
+        self.Name = Name
+        self.Cards = []
+
+    def AddCard(self, Card, Amount):
+        for i in range(Amount):
+            self.Cards.append(Card)
+
+Basic = Decks("Basic")
+Basic.AddCard(Ace, 1)
+Basic.AddCard(Monarch, 1)
+Basic.AddCard(Strike, 5)
 
 print("This is my turn based card game roguelike made in python. Why I made it? I'm bored and I like turn based card game roguelikes.")
 Username = input("Please enter a UserName: ")
@@ -88,7 +81,7 @@ while True:
         break
     print("")
 
-def EnemyEncounter(EnemyNum):
+def EnemyEncounter(EnemyNum = 0):
     global EnemyStats
     if EnemyNum > 0:
         EnemyStats = EnemyNum
