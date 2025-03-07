@@ -2,21 +2,30 @@
 import random
 import math
 
-EnemyStats = []
+class Player:
+    def __init__(self, Name, Health, Money, Stamina, HandSize, CurrentHand, DiscardPile, Deck):
+        self.Name = Name
+        self.Health = Health
+        self.Money = Money
+        self.Stamina = Stamina
+        self.HandSize = HandSize
+        self.CurrentHand = CurrentHand
+        self.DiscardPile = DiscardPile
+        self.Deck = Deck
 
-Money = 0
-PlayerStats = {
-    "Health": 20,
-    "Stamina": 5,
-    "Hand Size": 4,
-    "Deck": None,
-    "Draw Pile": None,
-    "Current Hand": None,
-    "Discarded": []
-}
+class Enemy:
+    def __init__(self, Name, Health, Money, Stamina, HandSize, CurrentHand, DiscardPile, Deck):
+        self.Name = Name
+        self.Health = Health
+        self.Money = Money
+        self.Stamina = Stamina
+        self.HandSize = HandSize
+        self.CurrentHand = CurrentHand
+        self.DiscardPile = DiscardPile
+        self.Deck = Deck
 
 class Cards:
-    def __init__(self, Name, Damage, Cost, Discard):
+    def __init__(self, Name, Damage, Cost, Discard = True):
         self.Name = Name
         self.Damage = Damage
         self.Cost = Cost
@@ -27,9 +36,13 @@ class Cards:
             return random.choice(self.Damage)
         return self.Damage
 
-Ace = Cards("Ace", [1, 11], 3, True)
-Monarch = Cards("Monarch", [2, 4, 6, 8, 10], 3, True)
-Strike = Cards("Strike", 2, 1, True)
+Ace = Cards("Ace", [1, 11], 3)
+Monarch = Cards("Monarch", [2, 4, 6, 8, 10], 3)
+Strike = Cards("Strike", 2, 1)
+Shot = Cards("Shot", [2, 3, 4], 2)
+Pilot = Cards("Pilot", [4, 8], 3)
+Slap = Cards("Slap", 1, 0)
+Asteroid = Cards("Asteroid", 10, 4)
 
 class Decks:
     def __init__(self, Name):
@@ -40,99 +53,79 @@ class Decks:
         for i in range(Amount):
             self.Cards.append(Card)
 
-Basic = Decks("Basic")
-Basic.AddCard(Ace, 1)
-Basic.AddCard(Monarch, 1)
-Basic.AddCard(Strike, 5)
+BasicDeck = Decks("Basic")
+BasicDeck.AddCard(Ace, 1)
+BasicDeck.AddCard(Monarch, 1)
+BasicDeck.AddCard(Strike, 5)
+GoblinDeck = Decks("Goblin")
+GoblinDeck.AddCard(Shot, 1)
+GoblinDeck.AddCard(Asteroid, 1)
+GoblinDeck.AddCard(Pilot, 1)
+GoblinDeck.AddCard(Strike, 3)
+SkeleDeck = Decks("Skeleton")
+SkeleDeck.AddCard(Strike, 1)
+SkeleDeck.AddCard(Shot, 3)
+SkeleDeck.AddCard(Slap, 1)
 
 print("This is my turn based card game roguelike made in python. Why I made it? I'm bored and I like turn based card game roguelikes.")
-Username = input("Please enter a UserName: ")
+User = Player(input("Please enter a UserName: "), 20, 0, 5, 4, [], [], BasicDeck)
 
-print(f"Alright welcome to my game {Username}. \nThis game has 2 modes; normal mode and endless mode. Normal mode has a final boss and ending, endless does not.")
+print(f"Alright welcome to my game {User.Name}. \nThis game has 2 modes; normal mode and endless mode. Normal mode has a final boss and ending, endless does not.")
 while True:
     Mode = input("\nDo you want to play in endless (e) or normal (n): ")
     Mode = Mode.lower()
-    if Mode != "e" and Mode != "n":
-        print("Those are not available options, please type e for endless or n for normal.")
-    else:
-        if Mode == "e":
-            print("You chose to play in endless mode.")
-        elif Mode == "n":
-            print("You chose to play in normal mode.")
+    if Mode == "e":
+        print("You chose to play in endless mode.")
         break
+    elif Mode == "n":
+        print("You chose to play in normal mode.")
+        break
+    else:
+        print("Those are not available options, please type e for endless or n for normal.")
     print("")
 
 print("Now that you've chosen the mode, it's time to pick your deck.")
 print("Sadly, there is only one deck at the moment so you're using that.")
-PlayerStats["Deck"] = ["Basic", Basic]
-print(f"You chose the {PlayerStats["Deck"][0].lower()} deck.\n")
+print(f"You chose the {User.Deck.Name} deck.\n")
 
 while True:
-    Tutorial = input("Would you like to commence the tutorial? (y/n): ")
-    if Tutorial.lower() != "y" and Tutorial.lower() != "n":
-        print("Those are not available options, please type y for yes or n for no.")
-    else:
-        if Tutorial.lower() == "y":
-            print("You chose to play the tutorial.")
-            Tutorial = True
-        elif Tutorial.lower() == "n":
-            print("You chose to skip the tutorial.")
-            Tutorial = False
+    Tutorial = input("Would you like to commence the tutorial? (Y/N): ")
+    if Tutorial.lower() == "y":
+        print("You chose to play the tutorial.")
+        Tutorial = True
         break
+    elif Tutorial.lower() == "n":
+        print("You chose to skip the tutorial.")
+        Tutorial = False
+        break
+    else:
+        print("Those are not available options, please type Y for yes or N for no.")
     print("")
 
 def EnemyEncounter(EnemyNum = 0):
-    global EnemyStats
     if EnemyNum > 0:
         EnemyStats = EnemyNum
     else:
-        EnemyStats = random.randint(1, 1)
+        EnemyStats = random.randint(1, 2)
     if EnemyStats == 1:
-        EnemyStats = {
-            "Name": "Goblin",
-            "Health": 10,
-            "Stamina": 4,
-            "Hand Size": 6,
-            "Current Hand": None,
-            "Discarded": None,
-            "Deck": ["Goblin", {
-                "Pilot": {"Damage": [4, 8], "Cost": 2, "Discard": True, },
-                "Asteroid": {"Damage": 10, "Cost": 4, "Discard": True, },
-                "Shot": {"Damage": [2, 3, 4], "Cost": 2, "Discard": True, },
-                "Strike": {"Damage": 2, "Cost": 1, "Discard": True, },
-                "Strike 2": {"Damage": 2, "Cost": 1, "Discard": True, },
-                "Strike 3": {"Damage": 2, "Cost": 1, "Discard": True, },
-                "Slap": {"Damage": 1, "Cost": 0, "Discard": True, }
-            }]}
+        Goblin = Enemy("Goblin", 5, 3, 4, 3, [], [], GoblinDeck)
+    elif EnemyStats == 2:
+        Skeleton = Enemy("Skeleton", 7, 1, 5, 2, [], [], SkeleDeck)
 
 def EnemyTurn():
     pass
 
-def EndTurn():
-    pass
-
 def HandleAttack(AttackingCard):
-    if type(PlayerStats["Deck"][1][Card]["Damage"]) is list:
-        Damage = random.choice(PlayerStats["Deck"][1][Card]["Damage"])
-    else:
-        Damage = PlayerStats["Deck"][1][Card]["Damage"]
-    EnemyStats["Health"] -= Damage
-    if EnemyStats["Health"] <= 0:
-        EnemyStats["Health"] = 0
-        print(f"You killed the {EnemyStats["Name"]}!")
-    else:
-        print(f"The {EnemyStats["Name"]} has {EnemyStats["Health"]} health left.")
+    pass
 
 if Tutorial:
     EnemyEncounter(1)
     print("A goblin has challenged you to a battle. You drew your hand.")
-    PlayerStats["Draw Pile"] = list(PlayerStats["Deck"][1].keys())
-    if PlayerStats["Hand Size"] > len(PlayerStats["Draw Pile"]):
-        PlayerStats["Current Hand"] = PlayerStats["Draw Pile"]
-    else:
-        PlayerStats["Current Hand"] = random.sample(PlayerStats["Draw Pile"], PlayerStats["Hand Size"])
-    for i in PlayerStats["Current Hand"]:
-        PlayerStats["Draw Pile"].remove(i)
+    print(User.Deck.Cards)
+    for i in range(User.HandSize):
+        User.CurrentHand += User.Deck.Cards[1]
+        print(i)
+    print(User.Deck.Cards)
     while True:
         Action = input("What would you like to do? (Attack/Shuffle/Check): ")
         if Action.lower() == "attack":
