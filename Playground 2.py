@@ -13,6 +13,12 @@ class Player:
         self.DiscardPile = DiscardPile
         self.Deck = Deck
 
+    def PickHand(self):
+        self.Deck.Shuffle()
+        for i in range(1, User.HandSize + 1):
+            self.CurrentHand.append(self.Deck.PickTopCard())
+            self.Deck.Cards.remove(self.Deck.PickTopCard())
+
 class Enemy:
     def __init__(self, Name, Health, Money, Stamina, HandSize, CurrentHand, DiscardPile, Deck):
         self.Name = Name
@@ -52,6 +58,12 @@ class Decks:
     def AddCard(self, Card, Amount):
         for i in range(Amount):
             self.Cards.append(Card)
+
+    def Shuffle(self):
+        random.shuffle(self.Cards)
+
+    def PickTopCard(self):
+        return self.Cards[1]
 
 BasicDeck = Decks("Basic")
 BasicDeck.AddCard(Ace, 1)
@@ -121,17 +133,13 @@ def HandleAttack(AttackingCard):
 if Tutorial:
     EnemyEncounter(1)
     print("A goblin has challenged you to a battle. You drew your hand.")
-    print(User.Deck.Cards)
-    for i in range(User.HandSize):
-        User.CurrentHand += User.Deck.Cards[1]
-        print(i)
-    print(User.Deck.Cards)
+    User.PickHand()
     while True:
         Action = input("What would you like to do? (Attack/Shuffle/Check): ")
         if Action.lower() == "attack":
             while True:
                 print("Pick a card from your hand. The cards in your hand are:")
-                for i in PlayerStats["Current Hand"]:
+                for i in User.CurrentHand:
                     print(i)
                 print("You may also type 'Leave' to exit the attack sequence.")
                 Card = input("Please pick a card: ")
@@ -139,31 +147,31 @@ if Tutorial:
                 if Card.lower() == "leave":
                     print("You closed the attack sequence.")
                     break
-                elif Card not in PlayerStats["Current Hand"]:
+                elif Card not in User.CurrentHand:
                     print("That is not a valid card.")
                 else:
-                    if type(PlayerStats["Deck"][1][Card]["Damage"]) is list:
+                    if type(User.Deck.Cards[Card].Damage) is list:
                         damages = ""
-                        for i in PlayerStats["Deck"][1][Card]["Damage"]:
-                            if i == PlayerStats["Deck"][1][Card]["Damage"][-1]:
+                        for i in User.Deck.Cards[Card].Damage:
+                            if i == User.Deck.Cards[Card].Damage[-1]:
                                 damages += f"or {i}"
                             else:
                                 damages += f"{i}, "
                         print(f"This card deals either {damages} damage. A random value out of these will be picked once the card is used.")
                     else:
-                        print(f"This card deals {PlayerStats["Deck"][1][Card]["Damage"]} damage.")
-                    print(f"This card will cost {PlayerStats["Deck"][1][Card]["Cost"]} stamina to use. You have {PlayerStats["Stamina"]} stamina.")
-                    if not PlayerStats["Deck"][1][Card]["Discard"]:
+                        print(f"This card deals {User.Deck.Cards[Card].Damage} damage.")
+                    print(f"This card will cost {User.Deck.Cards[Card].Cost} stamina to use. You have {User.Stamina} stamina.")
+                    if not User.Deck.Cards[Card].Discard:
                         print("This card does not discard on use.")
                     Action = input("Would you like to use this card? (Y/N): ")
                     if Action.lower() == "y":
-                        if PlayerStats["Stamina"] >= PlayerStats["Deck"][1][Card]["Cost"]:
+                        if User.Stamina >= User.Deck.Cards[Card].Cost:
                             print("You used the card.")
-                            PlayerStats["Stamina"] -= PlayerStats["Deck"][1][Card]["Cost"]
-                            if PlayerStats["Deck"][1][Card]["Discard"]:
-                                PlayerStats["Current Hand"].remove(Card)
-                                PlayerStats["Discarded"].append(Card)
-                            print(f"You have {PlayerStats["Stamina"]} stamina left.")
+                            User.Stamina -= User.Deck.Cards[Card].Cost
+                            if User.Deck.Cards[Card].Discard:
+                                User.CurrentHand.remove(Card)
+                                User.DiscardPile.append(Card)
+                            print(f"You have {User.Stamina} stamina left.")
                             HandleAttack(Card)
                             EnemyTurn()
                         else:
