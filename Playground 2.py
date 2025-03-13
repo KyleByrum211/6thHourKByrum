@@ -2,33 +2,78 @@
 import random
 import math
 
+CurrentEnemy = None
+
 class Player:
-    def __init__(self, Name, Health, Money, Stamina, HandSize, CurrentHand, DiscardPile, Deck):
+    def __init__(self, Name, MaxHealth, MaxStamina, HandSize, Deck):
         self.Name = Name
-        self.Health = Health
-        self.Money = Money
-        self.Stamina = Stamina
+        self.MaxHealth = MaxHealth
+        self.Health = MaxHealth
+        self.Money = 0
+        self.Stamina = MaxStamina
+        self.MaxStamina = MaxStamina
         self.HandSize = HandSize
-        self.CurrentHand = CurrentHand
-        self.DiscardPile = DiscardPile
+        self.CurrentHand = []
+        self.DiscardPile = []
+        self.Deck = Deck
+
+    def Die(self):
+        print("You died.")
+        exit()
+
+    def PickHand(self):
+        self.Deck.Shuffle()
+        for i in range(1, self.HandSize + 1):
+            self.CurrentHand.append(self.Deck.PickTopCard())
+            self.Deck.Cards.remove(self.Deck.PickTopCard())
+
+    def DealDamage(self, DamageDealt):
+        print(f"You got hit for {DamageDealt} damage.")
+        if self.Health <= 0:
+            self.Health = 0
+            self.Die()
+        else:
+            print(f"You have {self.Health} health left.")
+
+    def Heal(self, HealAmount):
+        print(f"You healed for {HealAmount} health.")
+        self.Health += HealAmount
+        if self.Health > self.MaxHealth:
+            self.Health = self.MaxHealth
+
+class Enemy:
+    def __init__(self, Name, MaxHealth, Money, MaxStamina, HandSize, Deck):
+        self.Name = Name
+        self.MaxHealth = MaxHealth
+        self.Health = MaxHealth
+        self.Money = Money
+        self.Stamina = MaxStamina
+        self.MaxStamina = MaxStamina
+        self.HandSize = HandSize
+        self.CurrentHand = []
+        self.DiscardPile = []
         self.Deck = Deck
 
     def PickHand(self):
         self.Deck.Shuffle()
-        for i in range(1, User.HandSize + 1):
+        for i in range(1, self.HandSize + 1):
             self.CurrentHand.append(self.Deck.PickTopCard())
             self.Deck.Cards.remove(self.Deck.PickTopCard())
 
-class Enemy:
-    def __init__(self, Name, Health, Money, Stamina, HandSize, CurrentHand, DiscardPile, Deck):
-        self.Name = Name
-        self.Health = Health
-        self.Money = Money
-        self.Stamina = Stamina
-        self.HandSize = HandSize
-        self.CurrentHand = CurrentHand
-        self.DiscardPile = DiscardPile
-        self.Deck = Deck
+    def DealDamage(self, DamageDealt):
+        self.Health -= DamageDealt
+        print(f"You hit the {self.Name} for {DamageDealt} damage.")
+        if self.Health <= 0:
+            self.Health = 0
+            print(f"You killed the {self.Name}!")
+        else:
+            print(f"It has {self.Health} health left.")
+
+    def Heal(self, HealAmount):
+        print(f"The {self.Name} healed for {HealAmount} health.")
+        self.Health += HealAmount
+        if self.Health > self.MaxHealth:
+            self.Health = self.MaxHealth
 
 class Cards:
     def __init__(self, Name, Damage, Cost, Discard = True):
@@ -80,7 +125,7 @@ SkeleDeck.AddCard(Shot, 3)
 SkeleDeck.AddCard(Slap, 1)
 
 print("This is my turn based card game roguelike made in python. Why I made it? I'm bored and I like turn based card game roguelikes.")
-User = Player(input("Please enter a UserName: "), 20, 0, 5, 4, [], [], BasicDeck)
+User = Player(input("Please enter a UserName: "), 20, 5, 4, BasicDeck)
 
 print(f"Alright welcome to my game {User.Name}. \nThis game has 2 modes; normal mode and endless mode. Normal mode has a final boss and ending, endless does not.")
 while True:
@@ -114,75 +159,85 @@ while True:
         print("Those are not available options, please type Y for yes or N for no.")
     print("")
 
+Skeleton = Enemy("Skeleton", 7, 1, 5, 2, SkeleDeck)
+Goblin = Enemy("Goblin", 5, 3, 4, 3, GoblinDeck)
+
 def EnemyEncounter(EnemyNum = 0):
+    global CurrentEnemy
     if EnemyNum > 0:
         EnemyStats = EnemyNum
     else:
         EnemyStats = random.randint(1, 2)
     if EnemyStats == 1:
-        Goblin = Enemy("Goblin", 5, 3, 4, 3, [], [], GoblinDeck)
+        CurrentEnemy = Goblin
     elif EnemyStats == 2:
-        Skeleton = Enemy("Skeleton", 7, 1, 5, 2, [], [], SkeleDeck)
+        CurrentEnemy = Skeleton
 
-def EnemyTurn():
-    pass
+def EnemyTurn(FightingEnemy):
+    FightingEnemy.PickHand()
 
-def HandleAttack(AttackingCard):
-    pass
+
+def HandleAttack(AttackingCard, AttackedEnemy):
+    AttackedEnemy.DealDamage(AttackingCard.PickDamage())
 
 if Tutorial:
     EnemyEncounter(1)
     print("A goblin has challenged you to a battle. You drew your hand.")
     User.PickHand()
     while True:
-        Action = input("What would you like to do? (Attack/Shuffle/Check): ")
-        if Action.lower() == "attack":
-            while True:
-                print("Pick a card from your hand. The cards in your hand are:")
-                for i in User.CurrentHand:
-                    print(i)
-                print("You may also type 'Leave' to exit the attack sequence.")
-                Card = input("Please pick a card: ")
-                Card = Card.title()
-                if Card.lower() == "leave":
-                    print("You closed the attack sequence.")
-                    break
-                elif Card not in User.CurrentHand:
-                    print("That is not a valid card.")
-                else:
-                    if type(User.Deck.Cards[Card].Damage) is list:
-                        damages = ""
-                        for i in User.Deck.Cards[Card].Damage:
-                            if i == User.Deck.Cards[Card].Damage[-1]:
-                                damages += f"or {i}"
-                            else:
-                                damages += f"{i}, "
-                        print(f"This card deals either {damages} damage. A random value out of these will be picked once the card is used.")
-                    else:
-                        print(f"This card deals {User.Deck.Cards[Card].Damage} damage.")
-                    print(f"This card will cost {User.Deck.Cards[Card].Cost} stamina to use. You have {User.Stamina} stamina.")
-                    if not User.Deck.Cards[Card].Discard:
-                        print("This card does not discard on use.")
-                    Action = input("Would you like to use this card? (Y/N): ")
-                    if Action.lower() == "y":
-                        if User.Stamina >= User.Deck.Cards[Card].Cost:
-                            print("You used the card.")
-                            User.Stamina -= User.Deck.Cards[Card].Cost
-                            if User.Deck.Cards[Card].Discard:
-                                User.CurrentHand.remove(Card)
-                                User.DiscardPile.append(Card)
-                            print(f"You have {User.Stamina} stamina left.")
-                            HandleAttack(Card)
-                            EnemyTurn()
-                        else:
-                            print("You do not have enough stamina to use that card.")
-                    else:
-                        print("You did not use the card.")
+        while True:
+            Action = input("What would you like to do? (Attack/Shuffle/Check): ")
+            if Action.lower() == "attack":
+                while True:
+                    print("Pick a card from your hand. The cards in your hand are:")
+                    for i in User.CurrentHand:
+                        print(i.Name)
+                    print("You may also type 'Leave' to exit the attack sequence.")
+                    Card = input("Please pick a card: ")
+                    if Card.lower() == "leave":
+                        print("You closed the attack sequence.")
                         break
-        elif Action.lower() == "shuffle":
-            print("You have chosen to shuffle. This will shuffle the entire deck as well as your hand, and then lets you draw more cards. \nDo note that shuffling wil end your turn.")
-            Action = input("Would you like to shuffle? (Y/N): ")
-            if Action.lower() == "y":
-                print("Shuffling deck.")
-                EnemyTurn()
+                    Card = next((card for card in User.CurrentHand if card.Name.lower() == Card.lower()), None) #Ngl I have no clue how this works, I asked chat gpt because I didn't know how to get this to work
+                    if Card not in User.CurrentHand:
+                        print("That is not a valid card.")
+                    else:
+                        if type(Card.Damage) is list:
+                            damages = ""
+                            for i in Card.Damage:
+                                if i == Card.Damage[-1]:
+                                    damages += f"or {i}"
+                                else:
+                                    damages += f"{i}, "
+                            print(f"This card deals either {damages} damage. A random value out of these will be picked once the card is used.")
+                        else:
+                            print(f"This card deals {Card.Damage} damage.")
+                        print(f"This card will cost {Card.Cost} stamina to use. You have {User.Stamina} stamina.")
+                        if not Card.Discard:
+                            print("This card does not discard on use.")
+                        Action = input("Would you like to use this card? (Y/N): ")
+                        if Action.lower() == "y":
+                            if User.Stamina >= Card.Cost:
+                                print("You used the card.")
+                                User.Stamina -= Card.Cost
+                                if Card.Discard:
+                                    User.CurrentHand.remove(Card)
+                                    User.DiscardPile.append(Card)
+                                print(f"You have {User.Stamina} stamina left.")
+                                HandleAttack(Card, CurrentEnemy)
+                                if CurrentEnemy.Health == 0:
+                                    break
+                            else:
+                                print("You do not have enough stamina to use that card.")
+                        else:
+                            print("You did not use the card.")
+                            break
+            elif Action.lower() == "shuffle":
+                print("You have chosen to shuffle. This will shuffle the entire deck as well as your hand, and then lets you draw more cards. \nDo note that shuffling wil end your turn.")
+                Action = input("Would you like to shuffle? (Y/N): ")
+                if Action.lower() == "y":
+                    print("Shuffling deck.")
+                    User.Deck.Shuffle()
+                    break
+        else:
+            EnemyTurn(CurrentEnemy)
 
