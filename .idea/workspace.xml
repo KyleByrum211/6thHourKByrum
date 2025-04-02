@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Added HW24">
+    <list default="true" id="65bd9a62-4c0a-4643-9b8a-b27da5ae5711" name="Changes" comment="Changed Playground 2">
+      <change afterPath="$PROJECT_DIR$/HW25.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Playground 2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Playground 2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +67,7 @@
     "Python.HW22.executor": "Run",
     "Python.HW23.executor": "Run",
     "Python.HW24.executor": "Run",
+    "Python.HW25.executor": "Run",
     "Python.HW3.executor": "Run",
     "Python.HW4.executor": "Run",
     "Python.HW5.executor": "Run",
@@ -112,14 +113,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723840889996</updated>
-    </task>
-    <task id="LOCAL-00044" summary="Added fighting stats to the playground that do nothing cause ima go play terraria">
-      <option name="closed" value="true" />
-      <created>1730486072340</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1730486072340</updated>
     </task>
     <task id="LOCAL-00045" summary="Changed HW10 to more accurately follow provided instructions and changed HW11 to say joe">
       <option name="closed" value="true" />
@@ -505,7 +498,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742927679812</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Changed Playground 2">
+      <option name="closed" value="true" />
+      <created>1743016657284</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1743016657284</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -527,13 +528,13 @@
     <MESSAGE value="Changed the playground 2 electric boogaloo" />
     <MESSAGE value="Added the Pla(i)yground" />
     <MESSAGE value="Added HW21" />
-    <MESSAGE value="Changed Playground 2" />
     <MESSAGE value="Added HW22" />
     <MESSAGE value="Trying to add classes to Playground 2" />
     <MESSAGE value="Added HW23" />
     <MESSAGE value="Finished Scenario 8" />
     <MESSAGE value="Updated playground 2" />
     <MESSAGE value="Added HW24" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added HW24" />
+    <MESSAGE value="Changed Playground 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed Playground 2" />
   </component>
 </project>
