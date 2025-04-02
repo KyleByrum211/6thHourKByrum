@@ -92,7 +92,7 @@ def SequenceCalculator(n):
 #11. Use a lambda function to add the Fibonacci numbers together and add the sum to a random custom month.
 
 #I do not know if you chose to read these comments I make. That said, this makes literally no sense. Which I imagine was supposed to be the point, but
-#you can't even add the numbers to a random month? So I just added them to the day count of a month.
+#you can't even add the numbers to a random month? So I just added them to the day count of a month, I figured that made the most sense.
 SequenceTotal = 0
 for num in SequenceCalculator(10):
     SequenceTotal += num
