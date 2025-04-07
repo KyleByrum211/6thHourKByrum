@@ -244,7 +244,7 @@ def PlayerTurn():
                 print("You closed the attack sequence.")
                 time.sleep(0.1)
                 break
-            Card = next((card for card in User.CurrentHand if card.Name.lower() == Card.lower()), None)  # Ngl I have no clue how this works, I asked chat gpt because I didn't know how to get this to work
+            Card = next((card for card in User.CurrentHand if card.Name.lower() == Card.lower()), None)  # Ngl I have no clue how this works, I asked ChatGPT because I didn't know how to get this to work
             if Card not in User.CurrentHand:
                 print("That is not a valid card.")
             else:
