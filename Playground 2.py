@@ -151,9 +151,11 @@ SkeleDeck.AddCard(Shot, 3)
 SkeleDeck.AddCard(Slap, 1)
 
 print("This is my turn based card game roguelike made in python. Why I made it? I'm bored and I like turn based card game roguelikes.")
+print("A few things to keep in mind. Note that all of these things will apply unless stated otherwise during the game.")
+print("You may use as many cards as you'd like during a turn, as long as you have enough stamina. Stamina will regen to max once you end your turn.")
 User = Player(input("Please enter a UserName: "), 20, 5, 4, BasicDeck)
 
-print(f"Alright welcome to my game {User.Name}. \nThis game has 2 modes; normal mode and endless mode. Normal mode has a final boss and ending, endless does not.")
+print(f"Welcome to my game {User.Name}. \nThis game has 2 modes; normal mode and endless mode. Normal mode has a final boss and ending, endless does not.")
 while True:
     Mode = input("\nDo you want to play in endless (e) or normal (n): ")
     Mode = Mode.lower()
@@ -207,8 +209,14 @@ def EnemyTurn(FightingEnemy):
             AttackingCard = random.choice(FightingEnemy.CurrentHand)
             if AttackingCard.Cost <= FightingEnemy.Stamina:
                 FightingEnemy.Stamina -= AttackingCard.Cost
-
-    print("\nGooboo")
+                FightingEnemy.DiscardPile += [AttackingCard]
+                FightingEnemy.CurrentHand.remove(AttackingCard)
+                print(AttackingCard.Name)
+            else:
+                FightingEnemy.DiscardPile += [AttackingCard]
+                FightingEnemy.CurrentHand.remove(AttackingCard)
+    elif FightingEnemy.AttackType == "":
+        pass
 
 def HandleAttack(AttackingCard, AttackedEnemy):
     AttackedEnemy.DealDamage(AttackingCard.PickDamage())
